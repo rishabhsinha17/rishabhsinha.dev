@@ -52,6 +52,11 @@ html[data-theme="dark"] {
   box-sizing: border-box;
 }
 
+button {
+  font: inherit;
+  color: inherit;
+}
+
 html {
   overflow-x: clip;
   scroll-behavior: smooth;
@@ -1045,6 +1050,10 @@ a:hover > .arrow {
 .footer-email > span:first-child {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+.footer-email > span:last-child {
+  font-family: var(--sans);
 }
 
 .footer-email:hover {
