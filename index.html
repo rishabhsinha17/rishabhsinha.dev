@@ -87,8 +87,8 @@
       </div>
     </header>
 
-    <div class="page-shell" id="top">
-      <aside class="intro" aria-labelledby="intro-title">
+    <main class="page-shell" id="top">
+      <header class="intro" aria-labelledby="intro-title">
         <div class="intro-orbit" aria-hidden="true">
           <span class="orbit-dot"></span>
         </div>
@@ -114,9 +114,9 @@
           <span>Start a conversation</span>
           <span aria-hidden="true">↗</span>
         </a>
-      </aside>
+      </header>
 
-      <main id="main-content">
+      <div id="main-content" tabindex="-1">
         <section class="content-section" id="experience" aria-labelledby="experience-title">
           <header class="section-heading">
             <div>
@@ -129,7 +129,7 @@
             </p>
           </header>
 
-          <ol class="experience-list">
+          <ol class="experience-list" role="list">
             <li>
               <div class="experience-meta">
                 <time datetime="2026-03">Mar 2026 — Present</time>
@@ -139,7 +139,7 @@
                 <p>Google</p>
                 <h3>Software Engineer</h3>
               </div>
-              <ul>
+              <ul role="list">
                 <li>Delivered Gemini intent-encoder post-training at 100+ QPS and sub-25 ms p99 with QLoRA/SFT on four TPUs.</li>
                 <li>Lowered RAG retrieval p99 by 9% through fan-out DAGs and concurrent embedding-memory reads.</li>
                 <li>Improved Chat search grounding through planner verbalization and context-service agent orchestration.</li>
@@ -155,7 +155,7 @@
                 <p>Amazon Web Services</p>
                 <h3>Software Development Engineer</h3>
               </div>
-              <ul>
+              <ul role="list">
                 <li>Architected a Bedrock AgentCore and LangGraph multi-agent orchestrator, cutting inference latency 40% with semantic caching.</li>
                 <li>Built a Kubernetes static-analysis engine around scheduler bin-packing, increasing validation throughput by more than 300%.</li>
                 <li>Improved agentic code-generation success by 25%+ with memory, sandboxed execution, and eval-driven repair loops.</li>
@@ -171,7 +171,7 @@
                 <p>Amazon Web Services</p>
                 <h3>Software Development Engineer Intern</h3>
               </div>
-              <ul>
+              <ul role="list">
                 <li>Built a fault-tolerant OAuth-backed integration for synchronizing resource data across 150+ AWS services.</li>
                 <li>Reduced on-call ticketing by 35% through resilient resource observability.</li>
                 <li>Implemented SigV4 authentication and 5 ms LDAP authorization using configuration caching and Guice.</li>
@@ -186,7 +186,7 @@
                 <p>National Institute of Standards and Technology</p>
                 <h3>Software Engineering Intern</h3>
               </div>
-              <ul>
+              <ul role="list">
                 <li>Accelerated signal processing by 85% with multiprocessing, NumPy SIMD operations, and parallel execution.</li>
                 <li>Reduced runtime by 45 seconds through thread pooling, profiling, and C++ hot-path optimization.</li>
                 <li>Identified 14 bottlenecks and configured PyCUDA kernels and AWS autoscaling for GPU workloads.</li>
@@ -201,7 +201,7 @@
                 <p>University of Maryland Applied Research Laboratory</p>
                 <h3>Machine Learning Research Intern</h3>
               </div>
-              <ul>
+              <ul role="list">
                 <li>Cut Lorenz Attractor model runtime by 20 seconds with NumPy, Dask, and Bash automation.</li>
                 <li>Improved prediction F1 by 15% using KNN, Truncated SVD, Ball Trees, and SHAP.</li>
                 <li>Reduced system capture size by 25% with adaptive time-delay embedding built on PyEMD.</li>
@@ -219,7 +219,7 @@
             <p>Measured systems work: throughput, tail latency, scaling, and reproducible evaluation.</p>
           </header>
 
-          <ol class="project-list">
+          <ol class="project-list" role="list">
             <li>
               <a href="https://superred.simonsure.com/" rel="noreferrer">
                 <span class="project-number">01</span>
@@ -276,7 +276,7 @@
             <p>Current work on evaluating and understanding the behavior of AI systems.</p>
           </header>
 
-          <ol class="research-list">
+          <ol class="research-list" role="list">
             <li>
               <div class="research-meta">
                 <time datetime="2026">2026</time>
@@ -422,7 +422,8 @@
             <h2>Let’s build something fast.</h2>
           </div>
           <a class="footer-email" href="mailto:rsinha17@terpmail.umd.edu">
-            rsinha17@terpmail.umd.edu <span aria-hidden="true">↗</span>
+            <span>rsinha17@terpmail.umd.edu</span>
+            <span aria-hidden="true">↗</span>
           </a>
           <div class="footer-bottom">
             <p>© <span id="current-year">2026</span> Rishabh Sinha · Santa Clara, CA</p>
@@ -434,7 +435,7 @@
             <a href="#top">Back to top ↑</a>
           </div>
         </footer>
-      </main>
-    </div>
+      </div>
+    </main>
   </body>
 </html>

@@ -4,11 +4,13 @@
   --paper-raised: #faf8f2;
   --ink: #171714;
   --muted: #68675f;
-  --faint: #9c9a91;
+  --faint: #6e6d65;
   --rule: #cfcdc4;
-  --accent: #dc4b2f;
+  --accent: #c43d27;
   --accent-soft: #f0c5b9;
   --selection: #ffdb61;
+  --footer-accent: #ff7258;
+  --footer-muted: #aaa89f;
   --display: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
   --sans: "Helvetica Neue", "Neue Haas Grotesk Text Pro", "Arial", sans-serif;
   --mono: "SFMono-Regular", "SF Mono", "Roboto Mono", "Courier New", monospace;
@@ -20,11 +22,30 @@ html[data-theme="dark"] {
   --paper-raised: #211f1b;
   --ink: #eeece4;
   --muted: #aaa89f;
-  --faint: #77756d;
+  --faint: #8b8980;
   --rule: #3f3d37;
   --accent: #ff7258;
   --accent-soft: #69392e;
   --selection: #775f14;
+  --footer-accent: #b93622;
+  --footer-muted: #68675f;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    color-scheme: dark;
+    --paper: #171714;
+    --paper-raised: #211f1b;
+    --ink: #eeece4;
+    --muted: #aaa89f;
+    --faint: #8b8980;
+    --rule: #3f3d37;
+    --accent: #ff7258;
+    --accent-soft: #69392e;
+    --selection: #775f14;
+    --footer-accent: #b93622;
+    --footer-muted: #68675f;
+  }
 }
 
 * {
@@ -32,6 +53,7 @@ html[data-theme="dark"] {
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
 }
@@ -110,6 +132,7 @@ button:focus-visible {
   display: inline-flex;
   gap: 0.62rem;
   align-items: center;
+  min-height: 44px;
   font-family: var(--mono);
   font-size: 0.78rem;
   font-weight: 700;
@@ -155,10 +178,10 @@ button:focus-visible {
 
 .theme-toggle {
   display: grid;
-  width: 35px;
-  height: 35px;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--muted);
   border-radius: 50%;
   background: transparent;
   color: var(--ink);
@@ -339,7 +362,7 @@ button:focus-visible {
   transform: translate(3px, -3px);
 }
 
-main {
+#main-content {
   min-width: 0;
 }
 
@@ -516,7 +539,10 @@ a:hover > .arrow {
 }
 
 .research-list h3 a {
-  text-decoration: none;
+  text-decoration-color: var(--rule);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
 }
 
 .research-list h3 a:hover {
@@ -544,6 +570,9 @@ a:hover > .arrow {
 }
 
 .research-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   text-align: right;
   text-decoration: none;
 }
@@ -628,7 +657,7 @@ a:hover > .arrow {
   color: var(--faint);
   font-family: var(--mono);
   font-size: 0.68rem;
-  white-space: nowrap;
+  text-align: right;
 }
 
 .feature-link {
@@ -978,6 +1007,14 @@ a:hover > .arrow {
   color: var(--paper);
 }
 
+.site-footer .footer-kicker {
+  color: var(--footer-accent);
+}
+
+.site-footer a:focus-visible {
+  outline-color: var(--footer-accent);
+}
+
 .site-footer h2 {
   max-width: 700px;
   margin: 0 0 3rem;
@@ -1000,8 +1037,13 @@ a:hover > .arrow {
   text-decoration: none;
 }
 
+.footer-email > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .footer-email:hover {
-  color: var(--accent);
+  color: var(--footer-accent);
 }
 
 .footer-bottom {
@@ -1010,7 +1052,7 @@ a:hover > .arrow {
   gap: 1rem;
   align-items: center;
   margin-top: 4rem;
-  color: color-mix(in srgb, var(--paper) 60%, transparent);
+  color: var(--footer-muted);
   font-family: var(--mono);
   font-size: 0.68rem;
   letter-spacing: 0.03em;
@@ -1027,18 +1069,21 @@ a:hover > .arrow {
 }
 
 .footer-bottom a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   text-decoration: none;
 }
 
 .footer-bottom a:hover {
-  color: var(--accent);
+  color: var(--footer-accent);
 }
 
 .footer-bottom > a:last-child {
   justify-self: end;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1240px) {
   .page-shell {
     display: block;
   }
@@ -1083,6 +1128,43 @@ a:hover > .arrow {
   .site-footer {
     padding-right: 5vw;
     padding-left: 5vw;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 1241px) {
+  .intro {
+    position: relative;
+    height: auto;
+    min-height: calc(100svh - 76px);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .intro-orbit {
+    top: 2rem;
+  }
+
+  .intro h1 {
+    font-size: clamp(3rem, 4.8vw, 5.25rem);
+  }
+
+  .lede {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .section-nav {
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .section-nav a {
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .email-link {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
   }
 }
 
@@ -1131,7 +1213,7 @@ a:hover > .arrow {
   }
 
   .section-nav {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 1rem;
     margin-top: 4rem;
   }
@@ -1140,7 +1222,7 @@ a:hover > .arrow {
     border-top: 1px solid var(--rule);
   }
 
-  .section-nav a:nth-child(-n + 3) {
+  .section-nav a:nth-child(-n + 2) {
     border-top: 0;
   }
 
@@ -1154,7 +1236,7 @@ a:hover > .arrow {
   }
 
   .section-heading h2 {
-    font-size: clamp(3.5rem, 17vw, 5.5rem);
+    font-size: clamp(2.75rem, 14vw, 5.5rem);
   }
 
   .section-heading > p {
@@ -1256,17 +1338,20 @@ a:hover > .arrow {
   }
 
   .site-footer h2 {
-    font-size: clamp(3.6rem, 18vw, 6rem);
+    font-size: clamp(3rem, 15vw, 6rem);
   }
 
   .footer-bottom {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
     margin-top: 3rem;
   }
 
   .footer-bottom nav {
-    grid-column: 1 / -1;
-    grid-row: 1;
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom > a:last-child {
+    justify-self: start;
   }
 }
 
@@ -1284,6 +1369,30 @@ a:hover > .arrow {
 }
 
 @media print {
+  :root,
+  html[data-theme="dark"],
+  html:not([data-theme]) {
+    color-scheme: light;
+    --paper: #fff;
+    --paper-raised: #fff;
+    --ink: #000;
+    --muted: #333;
+    --faint: #444;
+    --rule: #999;
+    --accent: #000;
+    --footer-muted: #333;
+  }
+
+  html,
+  body {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    transition: none !important;
+  }
+
   .site-header,
   .section-nav,
   .theme-toggle,
@@ -1306,12 +1415,24 @@ a:hover > .arrow {
 
   .content-section {
     padding: 2rem 0;
+  }
+
+  .section-heading,
+  .experience-list > li,
+  .project-list > li,
+  .research-list > li,
+  .education-grid article,
+  .skills-list > div {
     break-inside: avoid;
   }
 
   .site-footer {
     padding: 2rem 0;
-    background: transparent;
-    color: var(--ink);
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .footer-bottom {
+    color: #333 !important;
   }
 }
