@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f2f0e9"/>
+  <rect width="1200" height="8" fill="#dc4b2f"/>
+  <path d="M70 76h1060M70 550h1060" stroke="#cfcdc4"/>
+  <g transform="translate(926 70)">
+    <circle cx="90" cy="90" r="88" fill="none" stroke="#cfcdc4" stroke-width="2"/>
+    <path d="M-5 130 185 50" stroke="#cfcdc4" stroke-width="2"/>
+    <circle cx="137" cy="70" r="9" fill="#dc4b2f"/>
+    <circle cx="90" cy="90" r="5" fill="#171714"/>
+  </g>
+  <text x="70" y="116" fill="#dc4b2f" font-family="monospace" font-size="22" font-weight="700" letter-spacing="3">SOFTWARE ENGINEER / ML SYSTEMS</text>
+  <text x="70" y="270" fill="#171714" font-family="Georgia, serif" font-size="94" letter-spacing="-5">I build AI systems</text>
+  <text x="70" y="370" fill="#171714" font-family="Georgia, serif" font-size="94" letter-spacing="-5">that <tspan fill="#dc4b2f" font-style="italic">move.</tspan></text>
+  <text x="70" y="510" fill="#68675f" font-family="Arial, sans-serif" font-size="25">Inference / Retrieval / Agent infrastructure</text>
+  <text x="1068" y="590" fill="#171714" font-family="monospace" font-size="18" text-anchor="end">Rishabh Sinha *</text>
+</svg>
