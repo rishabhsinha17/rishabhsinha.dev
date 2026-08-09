@@ -1,7 +1,6 @@
 const root = document.documentElement;
 const themeToggle = document.querySelector(".theme-toggle");
-const themeIcon = document.querySelector(".theme-icon");
-const themeColor = document.querySelector('meta[name="theme-color"]');
+const themeColorTags = document.querySelectorAll('meta[name="theme-color"]');
 const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
 function readStoredTheme() {
@@ -23,17 +22,23 @@ function storeTheme(theme) {
 function applyTheme(theme) {
   const isDark = theme === "dark";
 
+  // Setting this first means the custom properties below resolve to the new
+  // theme, so the browser chrome colour can never drift from the stylesheet.
   root.dataset.theme = theme;
+
   themeToggle?.setAttribute(
     "aria-label",
     `Switch to ${isDark ? "light" : "dark"} theme`,
   );
+  themeToggle?.setAttribute("aria-pressed", String(isDark));
 
-  if (themeIcon) {
-    themeIcon.textContent = isDark ? "☼" : "◐";
+  const paper = getComputedStyle(root).getPropertyValue("--paper").trim();
+
+  // Both media-scoped tags are set to the resolved colour: whichever one the
+  // OS matches then agrees with the theme the visitor actually chose.
+  if (paper) {
+    themeColorTags.forEach((tag) => tag.setAttribute("content", paper));
   }
-
-  themeColor?.setAttribute("content", isDark ? "#171714" : "#f2f0e9");
 }
 
 applyTheme(readStoredTheme() || (systemPrefersDark.matches ? "dark" : "light"));
@@ -44,11 +49,19 @@ themeToggle?.addEventListener("click", () => {
   applyTheme(nextTheme);
 });
 
-systemPrefersDark.addEventListener("change", (event) => {
+function onSystemThemeChange(event) {
   if (!readStoredTheme()) {
     applyTheme(event.matches ? "dark" : "light");
   }
-});
+}
+
+// Safari 13 and iOS 13 only implement the deprecated MediaQueryList listener
+// API; without this branch the TypeError would abort the rest of the script.
+if (typeof systemPrefersDark.addEventListener === "function") {
+  systemPrefersDark.addEventListener("change", onSystemThemeChange);
+} else if (typeof systemPrefersDark.addListener === "function") {
+  systemPrefersDark.addListener(onSystemThemeChange);
+}
 
 const sectionLinks = [...document.querySelectorAll(".section-nav a")];
 const observedSections = sectionLinks
@@ -103,22 +116,25 @@ let scrollFrame;
 window.addEventListener(
   "scroll",
   () => {
-    if (scrollFrame) {
+    // Above 1240px the intro rail is sticky and the observer owns the active
+    // state outright, so skip the layout read entirely rather than measuring
+    // on every frame and throwing the result away.
+    if (scrollFrame || !stackedLayout.matches) {
       return;
     }
 
     scrollFrame = requestAnimationFrame(() => {
       scrollFrame = null;
       const firstSection = observedSections[0];
-      const firstSectionTop = firstSection
-        ? firstSection.getBoundingClientRect().top + window.scrollY
-        : 0;
 
-      if (
-        stackedLayout.matches &&
-        firstSection &&
-        window.scrollY < firstSectionTop - window.innerHeight * 0.2
-      ) {
+      if (!firstSection) {
+        return;
+      }
+
+      const firstSectionTop =
+        firstSection.getBoundingClientRect().top + window.scrollY;
+
+      if (window.scrollY < firstSectionTop - window.innerHeight * 0.2) {
         setActiveSection(null);
       }
     });
@@ -126,6 +142,8 @@ window.addEventListener(
   { passive: true },
 );
 
-document.getElementById("current-year").textContent = new Date()
-  .getFullYear()
-  .toString();
+const yearSlot = document.getElementById("current-year");
+
+if (yearSlot) {
+  yearSlot.textContent = new Date().getFullYear().toString();
+}

@@ -8,3 +8,5 @@
 .gitignore
 README.md
 wrangler.jsonc
+og-image.svg
+icon-source.svg

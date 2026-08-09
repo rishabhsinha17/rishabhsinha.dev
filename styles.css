@@ -60,7 +60,9 @@ button {
 html {
   overflow-x: clip;
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 2rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -72,9 +74,13 @@ body {
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+  /*
+    Only the background cross-fades. Transitioning `color` at the same time
+    dragged text and page through mid-grey together, collapsing contrast to
+    1.03:1 for ~70ms on every theme switch.
+  */
+  transition: background-color 180ms ease;
 }
 
 body::before {
@@ -97,6 +103,43 @@ a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
+}
+
+/*
+  Icon system. The sprite itself never renders; every mark is a <use> of one of
+  its symbols, sized in em so it tracks the text it sits beside and is the same
+  shape on every platform.
+*/
+.icon-sprite {
+  display: none;
+}
+
+.arrow,
+.wordmark-mark,
+.theme-icon {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  vertical-align: -0.125em;
+}
+
+.arrow {
+  color: var(--faint);
+  font-size: 1.15em;
+  transition: transform 150ms ease;
+}
+
+a:hover .arrow {
+  color: var(--accent);
+}
+
+a:hover .arrow:not(.arrow-up) {
+  transform: translate(2px, -2px);
+}
+
+a:hover .arrow-up {
+  transform: translateY(-2px);
 }
 
 a:focus-visible,
@@ -129,7 +172,9 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   min-height: 76px;
-  padding: 0 3vw;
+  /* 3vw matches .intro's left gutter, so the wordmark aligns with the H1. */
+  padding: 0 max(3vw, env(safe-area-inset-right)) 0
+    max(3vw, env(safe-area-inset-left));
   border-bottom: 1px solid var(--rule);
 }
 
@@ -148,11 +193,11 @@ button:focus-visible {
 .wordmark-mark {
   color: var(--accent);
   font-size: 1rem;
-  transition: transform 350ms ease;
+  transition: transform 150ms ease;
 }
 
 .wordmark:hover .wordmark-mark {
-  transform: rotate(90deg);
+  transform: rotate(45deg);
 }
 
 .header-actions {
@@ -204,6 +249,27 @@ button:focus-visible {
   transform: rotate(15deg);
 }
 
+/* The active glyph is chosen in CSS so it is correct on first paint, before
+   script.js has run — and stays correct if it never runs at all. */
+.theme-icon-dark,
+html[data-theme="dark"] .theme-icon-light {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-icon-dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .theme-icon-light {
+    display: none;
+  }
+
+  html:not([data-theme]) .theme-icon-dark {
+    display: block;
+  }
+}
+
 .page-shell {
   display: grid;
   grid-template-columns: minmax(320px, 38vw) minmax(0, 1fr);
@@ -214,9 +280,20 @@ button:focus-visible {
   top: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  min-height: 680px;
-  padding: clamp(4.5rem, 8vh, 7rem) clamp(2rem, 5vw, 6rem) 2.5rem 3vw;
+  /*
+    The rail starts 76px down, below .site-header, so a full 100vh pushed its
+    last child — the "Start a conversation" CTA — below the fold on every
+    desktop. Subtracting the header height is what the other three breakpoints
+    already do. max-height + auto overflow keeps the CTA reachable when large
+    text or a short window makes the content taller than the rail.
+  */
+  height: calc(100svh - 76px);
+  max-height: calc(100svh - 76px);
+  min-height: 0;
+  padding: clamp(4.5rem, 8vh, 7rem) clamp(2rem, 5vw, 6rem) 2.5rem
+    max(3vw, env(safe-area-inset-left));
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-right: 1px solid var(--rule);
 }
 
@@ -319,20 +396,23 @@ button:focus-visible {
 .section-nav a {
   display: grid;
   grid-template-columns: 2.5rem 1fr;
-  padding: 0.66rem 0;
+  align-items: center;
+  /* 44px minimum touch target rather than the 40.8px the padding alone gave. */
+  min-height: 44px;
+  padding: 0.5rem 0;
   border-bottom: 1px solid var(--rule);
   color: var(--muted);
   font-size: 0.82rem;
   text-decoration: none;
   transition:
-    color 120ms ease,
-    padding-left 120ms ease;
+    color 150ms ease,
+    padding-left 150ms ease;
 }
 
 .section-nav a span {
   color: var(--faint);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
 }
 
 .section-nav a:hover,
@@ -357,22 +437,24 @@ button:focus-visible {
   text-decoration: none;
 }
 
-.email-link span:last-child {
+.email-link .arrow {
   color: var(--accent);
-  font-size: 1rem;
-  transition: transform 150ms ease;
 }
 
-.email-link:hover span:last-child {
-  transform: translate(3px, -3px);
-}
-
-#main-content {
+.page-body {
   min-width: 0;
 }
 
 .content-section {
-  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 5.5rem);
+  /*
+    Vertical rhythm is capped against viewport height as well as width: on a
+    1366x650 laptop a pure 10vw gave 137px of padding top and bottom, so
+    inter-section whitespace ate 42% of a screenful.
+  */
+  padding: clamp(3.5rem, min(10vw, 14vh), 9rem)
+    max(clamp(1.5rem, 5vw, 5.5rem), env(safe-area-inset-right))
+    clamp(3.5rem, min(10vw, 14vh), 9rem)
+    max(clamp(1.5rem, 5vw, 5.5rem), env(safe-area-inset-left));
   border-bottom: 1px solid var(--rule);
 }
 
@@ -387,10 +469,14 @@ button:focus-visible {
 .section-heading h2 {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(3.2rem, 6vw, 6.5rem);
+  /*
+    Lower bound meets the <=680px rule's upper bound (both 4.5rem), so the
+    headline no longer shrinks 88px -> 51px when the viewport grows by 1px.
+  */
+  font-size: clamp(4.5rem, 6vw, 6.5rem);
   font-weight: 400;
-  letter-spacing: -0.06em;
-  line-height: 0.86;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
 }
 
 .section-heading > p {
@@ -402,67 +488,11 @@ button:focus-visible {
   line-height: 1.5;
 }
 
-.index-list,
 .research-list,
 .project-list {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.index-list > li {
-  display: grid;
-  grid-template-columns: 5.5rem 1fr;
-  border-top: 1px solid var(--rule);
-}
-
-.index-list > li:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.index-list time {
-  padding: 1.2rem 1rem 1.2rem 0;
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
-}
-
-.index-list a {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem 0 1rem 1.25rem;
-  border-left: 1px solid var(--rule);
-  font-family: var(--display);
-  font-size: clamp(1.02rem, 1.55vw, 1.35rem);
-  line-height: 1.25;
-  text-decoration: none;
-  transition:
-    color 140ms ease,
-    padding 140ms ease,
-    background 140ms ease;
-}
-
-.index-list a:hover {
-  padding-right: 0.6rem;
-  padding-left: 1.65rem;
-  background: var(--paper-raised);
-  color: var(--accent);
-}
-
-.arrow {
-  flex: 0 0 auto;
-  color: var(--faint);
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  transition: transform 150ms ease;
-}
-
-a:hover > .arrow {
-  color: var(--accent);
-  transform: translate(3px, -3px);
 }
 
 .research-list {
@@ -475,8 +505,9 @@ a:hover > .arrow {
 .research-list > li {
   display: flex;
   flex-direction: column;
-  min-height: 300px;
-  padding: 1.25rem;
+  /* Matches .education-grid article so the two card grids read as one system. */
+  min-height: 310px;
+  padding: clamp(1.25rem, 3vw, 2rem);
   border-right: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   transition: background 180ms ease;
@@ -513,7 +544,7 @@ a:hover > .arrow {
 .research-meta time {
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
 }
 
 .status {
@@ -530,11 +561,6 @@ a:hover > .arrow {
 .status-preprint {
   border-color: var(--accent-soft);
   color: var(--accent);
-}
-
-.status-paper {
-  background: var(--ink);
-  color: var(--paper);
 }
 
 .research-list h3 {
@@ -569,7 +595,7 @@ a:hover > .arrow {
 .research-footer a {
   margin: 0;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   line-height: 1.4;
 }
 
@@ -579,6 +605,7 @@ a:hover > .arrow {
 
 .research-footer a {
   display: inline-flex;
+  gap: 0.35em;
   align-items: center;
   min-height: 44px;
   text-align: right;
@@ -587,10 +614,6 @@ a:hover > .arrow {
 
 .research-footer a:hover {
   color: var(--accent);
-}
-
-.project-list {
-  counter-reset: projects;
 }
 
 .project-list li {
@@ -622,7 +645,7 @@ a:hover > .arrow {
 .project-number {
   color: var(--accent);
   font-family: var(--mono);
-  font-size: 0.69rem;
+  font-size: 0.68rem;
   transition: transform 150ms ease;
 }
 
@@ -640,25 +663,10 @@ a:hover > .arrow {
   transition: color 150ms ease;
 }
 
-.project-copy strong small {
-  display: inline-block;
-  margin-left: 0.4rem;
-  padding: 0.2rem 0.42rem;
-  border-radius: 2px;
-  background: var(--accent);
-  color: var(--paper);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-
 .project-copy > span {
   margin-top: 0.55rem;
   color: var(--muted);
-  font-size: 0.77rem;
+  font-size: 0.78rem;
 }
 
 .project-tags {
@@ -666,120 +674,6 @@ a:hover > .arrow {
   font-family: var(--mono);
   font-size: 0.68rem;
   text-align: right;
-}
-
-.feature-link {
-  display: grid;
-  grid-template-columns: 3.5rem 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 1.25rem;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-  transition:
-    background 150ms ease,
-    color 150ms ease;
-}
-
-.feature-link:hover {
-  background: var(--accent);
-  color: #fff;
-}
-
-.feature-icon {
-  display: grid;
-  width: 2.35rem;
-  height: 2.35rem;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  place-items: center;
-}
-
-.feature-link > span:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-}
-
-.feature-link strong {
-  font-family: var(--display);
-  font-size: 1.12rem;
-  font-weight: 400;
-}
-
-.feature-link small {
-  margin-top: 0.25rem;
-  opacity: 0.65;
-  font-size: 0.7rem;
-}
-
-.press-list a {
-  font-family: var(--sans);
-}
-
-.press-list a > span:first-child {
-  display: flex;
-  flex-direction: column;
-}
-
-.press-list strong {
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.press-list small {
-  margin-top: 0.35rem;
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.03em;
-}
-
-.other-section {
-  min-height: 60vh;
-}
-
-.other-card {
-  display: grid;
-  grid-template-columns: 5rem 1fr auto;
-  gap: 2rem;
-  align-items: start;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  border: 1px solid var(--rule);
-  background: var(--paper-raised);
-  text-decoration: none;
-  transition:
-    border-color 150ms ease,
-    transform 150ms ease;
-}
-
-.other-card:hover {
-  border-color: var(--ink);
-  transform: translateY(-3px);
-}
-
-.other-card time {
-  color: var(--faint);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-}
-
-.other-card strong {
-  max-width: 630px;
-  font-family: var(--display);
-  font-size: clamp(1.45rem, 3vw, 2.7rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-}
-
-.other-card > span {
-  color: var(--accent);
 }
 
 .experience-list {
@@ -790,7 +684,15 @@ a:hover > .arrow {
 
 .experience-list > li {
   display: grid;
-  grid-template-columns: minmax(145px, 0.62fr) minmax(180px, 0.9fr) minmax(260px, 1.45fr);
+  /*
+    The three minimums plus two gaps used to total 659px inside a 645px column
+    at 1241-1271px, so the bullet copy hung 14px past the right margin every
+    other section respects. Percentage minimums cannot exceed the track.
+  */
+  grid-template-columns:
+    minmax(0, 0.62fr)
+    minmax(0, 0.9fr)
+    minmax(0, 1.45fr);
   gap: clamp(1.25rem, 3vw, 3rem);
   padding: 2rem 0;
   border-top: 1px solid var(--rule);
@@ -841,7 +743,7 @@ a:hover > .arrow {
   margin: 0;
   padding: 0;
   color: var(--muted);
-  font-size: 0.79rem;
+  font-size: 0.78rem;
   line-height: 1.5;
   list-style: none;
 }
@@ -1052,19 +954,25 @@ a:hover > .arrow {
   overflow-wrap: anywhere;
 }
 
-.footer-email > span:last-child {
-  font-family: var(--sans);
+.footer-email .arrow {
+  color: var(--paper);
 }
 
-.footer-email:hover {
+.footer-email:hover,
+.footer-email:hover .arrow {
   color: var(--footer-accent);
 }
 
 .footer-bottom {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
   align-items: center;
+  /*
+    A rigid 1fr auto 1fr grid forced the copyright onto two lines from ~768px
+    down. Wrapping lets the three groups reflow instead of squeezing.
+  */
+  justify-content: space-between;
   margin-top: 4rem;
   color: var(--footer-muted);
   font-family: var(--mono);
@@ -1084,17 +992,19 @@ a:hover > .arrow {
 
 .footer-bottom a {
   display: inline-flex;
+  gap: 0.4em;
   align-items: center;
   min-height: 44px;
   text-decoration: none;
 }
 
-.footer-bottom a:hover {
+.footer-bottom a:hover,
+.footer-bottom a:hover .arrow {
   color: var(--footer-accent);
 }
 
-.footer-bottom > a:last-child {
-  justify-self: end;
+.back-to-top .arrow {
+  color: var(--footer-muted);
 }
 
 @media (max-width: 1240px) {
@@ -1105,10 +1015,19 @@ a:hover > .arrow {
   .intro {
     position: relative;
     height: auto;
+    max-height: none;
     min-height: calc(100svh - 76px);
-    padding: clamp(4.5rem, 10vh, 7rem) 5vw 2.5rem;
+    padding: clamp(4.5rem, 10vh, 7rem) max(5vw, env(safe-area-inset-right))
+      2.5rem max(5vw, env(safe-area-inset-left));
+    overflow-y: visible;
     border-right: 0;
     border-bottom: 1px solid var(--rule);
+  }
+
+  /* Header follows the content gutter once the sticky rail is gone. */
+  .site-header {
+    padding-right: max(5vw, env(safe-area-inset-right));
+    padding-left: max(5vw, env(safe-area-inset-left));
   }
 
   .intro h1 {
@@ -1140,16 +1059,20 @@ a:hover > .arrow {
 
   .content-section,
   .site-footer {
-    padding-right: 5vw;
-    padding-left: 5vw;
+    padding-right: max(5vw, env(safe-area-inset-right));
+    padding-left: max(5vw, env(safe-area-inset-left));
   }
 }
 
 @media (max-height: 760px) and (min-width: 1241px) {
   .intro {
-    position: relative;
-    height: auto;
-    min-height: calc(100svh - 76px);
+    /*
+      Previously this dropped the rail to position: relative; height: auto,
+      which — as a stretched grid item — grew it to the full 6,463px page
+      height on a 1366x768 laptop: a 5,900px empty column with a border down
+      its side. Staying sticky keeps the rail one viewport tall; the smaller
+      type below makes the content fit a 650px window.
+    */
     padding-top: 2rem;
     padding-bottom: 1rem;
   }
@@ -1171,9 +1094,15 @@ a:hover > .arrow {
     margin: 1.5rem 0 0.75rem;
   }
 
+  /*
+    Only reachable at >=1241px, i.e. a pointer device, so the 44px touch
+    minimum is not needed here — and reclaiming it is what lets the whole
+    rail, CTA included, fit a 650px-tall laptop window without scrolling.
+  */
   .section-nav a {
-    padding-top: 0.45rem;
-    padding-bottom: 0.45rem;
+    min-height: 36px;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 
   .email-link {
@@ -1184,7 +1113,7 @@ a:hover > .arrow {
 
 @media (max-width: 820px) {
   .experience-list > li {
-    grid-template-columns: minmax(140px, 0.55fr) 1fr;
+    grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
   }
 
   .experience-list ul {
@@ -1194,13 +1123,10 @@ a:hover > .arrow {
 }
 
 @media (max-width: 680px) {
-  html {
-    scroll-padding-top: 1rem;
-  }
-
   .site-header {
     min-height: 64px;
-    padding: 0 1.1rem;
+    padding: 0 max(1.1rem, env(safe-area-inset-right)) 0
+      max(1.1rem, env(safe-area-inset-left));
   }
 
   .availability {
@@ -1209,7 +1135,8 @@ a:hover > .arrow {
 
   .intro {
     min-height: calc(100svh - 64px);
-    padding: 4.5rem 1.1rem 1.5rem;
+    padding: 4.5rem max(1.1rem, env(safe-area-inset-right)) 1.5rem
+      max(1.1rem, env(safe-area-inset-left));
   }
 
   .intro-orbit {
@@ -1219,7 +1146,8 @@ a:hover > .arrow {
   }
 
   .intro h1 {
-    font-size: clamp(3.45rem, 18vw, 5.7rem);
+    /* Meets the 12vw rule's value at 681px (81.7px) instead of jumping to 91px. */
+    font-size: clamp(3.45rem, 18vw, 5.1rem);
   }
 
   .lede {
@@ -1241,7 +1169,8 @@ a:hover > .arrow {
   }
 
   .content-section {
-    padding: 5.5rem 1.1rem;
+    padding: 5rem max(1.1rem, env(safe-area-inset-right)) 5rem
+      max(1.1rem, env(safe-area-inset-left));
   }
 
   .section-heading {
@@ -1250,29 +1179,12 @@ a:hover > .arrow {
   }
 
   .section-heading h2 {
-    font-size: clamp(2.75rem, 14vw, 5.5rem);
+    /* Upper bound matches the base rule's lower bound — continuous at 680/681. */
+    font-size: clamp(2.75rem, 14vw, 4.5rem);
   }
 
   .section-heading > p {
     margin-top: 1.5rem;
-  }
-
-  .index-list > li {
-    grid-template-columns: 4.3rem 1fr;
-  }
-
-  .index-list time {
-    padding-top: 1.1rem;
-    font-size: 0.68rem;
-  }
-
-  .index-list a {
-    padding-left: 0.9rem;
-    font-size: 1.03rem;
-  }
-
-  .index-list a:hover {
-    padding-left: 1.1rem;
   }
 
   .research-list {
@@ -1315,11 +1227,6 @@ a:hover > .arrow {
     line-height: 1.35;
   }
 
-  .feature-link {
-    grid-template-columns: 2.7rem 1fr auto;
-    padding: 1rem;
-  }
-
   .education-grid {
     grid-template-columns: 1fr;
   }
@@ -1338,17 +1245,9 @@ a:hover > .arrow {
     gap: 0.75rem;
   }
 
-  .other-card {
-    grid-template-columns: 1fr auto;
-    gap: 1.25rem;
-  }
-
-  .other-card time {
-    grid-column: 1 / -1;
-  }
-
   .site-footer {
-    padding: 5.5rem 1.1rem 1.5rem;
+    padding: 5rem max(1.1rem, env(safe-area-inset-right)) 1.5rem
+      max(1.1rem, env(safe-area-inset-left));
   }
 
   .site-footer h2 {
@@ -1356,16 +1255,40 @@ a:hover > .arrow {
   }
 
   .footer-bottom {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
     margin-top: 3rem;
   }
 
   .footer-bottom nav {
     flex-wrap: wrap;
   }
+}
 
-  .footer-bottom > a:last-child {
-    justify-self: start;
+/*
+  Hover affordances only where a real pointer exists. On touch, :hover latches
+  after a tap and leaves rows highlighted and arrows nudged until you tap
+  somewhere else.
+*/
+@media (hover: none) {
+  .research-list > li:hover,
+  .education-grid article:hover,
+  .research-list > li:hover .research-metrics div {
+    background: var(--paper);
+  }
+
+  a:hover .arrow,
+  a:hover .arrow:not(.arrow-up),
+  a:hover .arrow-up,
+  .wordmark:hover .wordmark-mark,
+  .theme-toggle:hover {
+    transform: none;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--muted);
+    background: transparent;
   }
 }
 
@@ -1379,6 +1302,48 @@ a:hover > .arrow {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/*
+  Windows High Contrast / forced-colors. Anything drawn with a background —
+  the accent bar, the bullet dots, the availability dot, the 1px gaps that
+  fake the metric grid's dividers — is otherwise repainted as Canvas and
+  disappears entirely.
+*/
+@media (forced-colors: active) {
+  body::before,
+  .availability-dot {
+    forced-color-adjust: none;
+  }
+
+  .experience-list ul li::before {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+
+  .research-metrics {
+    gap: 0;
+  }
+
+  .research-metrics div {
+    border: 1px solid CanvasText;
+  }
+
+  .research-metrics div + div {
+    border-left: 0;
+  }
+
+  .theme-toggle,
+  .status {
+    border-color: CanvasText;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid Highlight;
   }
 }
 
@@ -1394,6 +1359,9 @@ a:hover > .arrow {
     --faint: #444;
     --rule: #999;
     --accent: #000;
+    --accent-soft: #999;
+    --selection: #fff;
+    --footer-accent: #000;
     --footer-muted: #333;
   }
 
@@ -1407,6 +1375,8 @@ a:hover > .arrow {
     transition: none !important;
   }
 
+  /* position: fixed repeats on every printed page in Gecko. */
+  body::before,
   .site-header,
   .section-nav,
   .theme-toggle,
@@ -1422,13 +1392,97 @@ a:hover > .arrow {
   .intro {
     position: static;
     height: auto;
+    max-height: none;
     min-height: 0;
     padding: 2rem 0;
+    overflow-y: visible;
     border-right: 0;
+  }
+
+  /* The hairlines were color-mix(--paper 35%) — 35% white on white in print. */
+  .footer-email {
+    border-top-color: #999;
+    border-bottom-color: #999;
+  }
+
+  /*
+    Browsers drop background painting when printing, and the metric grid drew
+    its dividers as 1px background gaps. Real borders survive.
+  */
+  .research-metrics {
+    gap: 0;
+    background: none;
+    border: 0;
+  }
+
+  .research-metrics div {
+    border: 1px solid #999;
+  }
+
+  .research-metrics div + div {
+    border-left: 0;
+  }
+
+  /* A printed resume is useless without the URLs behind its links. */
+  .project-list a[href^="http"]::after,
+  .research-list h3 a[href^="http"]::after,
+  .research-links a[href^="http"]::after,
+  .footer-bottom nav a[href^="http"]::after {
+    color: #333;
+    content: " (" attr(href) ")";
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 400;
+    /* .footer-bottom uppercases its text; URLs must print verbatim. */
+    text-transform: none;
+    overflow-wrap: anywhere;
+  }
+
+  .back-to-top {
+    display: none;
+  }
+
+  /*
+    .project-list a is a grid; without this the URL is placed in the 1.25rem
+    arrow track and prints one character per line down the page.
+  */
+  .project-list a {
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+  }
+
+  .project-list a[href^="http"]::after {
+    grid-column: 1 / -1;
+    padding-top: 0.35rem;
+  }
+
+  .footer-bottom nav {
+    flex-wrap: wrap;
+    gap: 0.35rem 1.2rem;
+  }
+
+  .arrow {
+    display: none;
   }
 
   .content-section {
     padding: 2rem 0;
+  }
+
+  /*
+    break-inside is ignored on grid items in WebKit, so cards split across
+    pages. Flowing these two grids as blocks in print makes it apply.
+  */
+  .research-list,
+  .education-grid {
+    display: block;
+    border-left: 0;
+  }
+
+  .research-list > li,
+  .education-grid article {
+    min-height: 0;
+    border: 1px solid var(--rule);
+    border-top: 0;
   }
 
   .section-heading,
