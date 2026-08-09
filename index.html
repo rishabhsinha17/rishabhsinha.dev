@@ -202,322 +202,322 @@
 
       <div class="page-body">
         <main id="main-content" tabindex="-1">
-        <section class="content-section" id="experience" aria-labelledby="experience-title">
-          <header class="section-heading">
-            <div>
-              <p class="section-number">01 / Work</p>
-              <h2 id="experience-title">Experience</h2>
-            </div>
-            <p>
-              Production ML and distributed systems work across model serving,
-              retrieval, agent orchestration, and scientific computing.
-            </p>
-          </header>
-
-          <ol class="experience-list" role="list">
-            <li>
-              <div class="experience-meta">
-                <time datetime="2026-03">Mar 2026 — Present</time>
-                <span>Sunnyvale, CA</span>
-              </div>
-              <div class="experience-role">
-                <p>Google</p>
-                <h3>Software Engineer</h3>
-              </div>
-              <ul role="list">
-                <li>Delivered Gemini intent-encoder post-training at 100+ QPS and sub-25 ms p99 with QLoRA/SFT on four TPUs.</li>
-                <li>Lowered RAG retrieval p99 by 9% through fan-out DAGs and concurrent embedding-memory reads.</li>
-                <li>Improved Chat search grounding through planner verbalization and context-service agent orchestration.</li>
-                <li>Hardened serving reliability with safer Borg/Kubernetes rollouts, telemetry, and cell-level rollback.</li>
-              </ul>
-            </li>
-            <li>
-              <div class="experience-meta">
-                <time datetime="2025-08">Aug 2025 — Mar 2026</time>
-                <span>Seattle, WA</span>
-              </div>
-              <div class="experience-role">
-                <p>Amazon Web Services</p>
-                <h3>Software Development Engineer</h3>
-              </div>
-              <ul role="list">
-                <li>Architected a Bedrock AgentCore and LangGraph multi-agent orchestrator, cutting inference latency 40% with semantic caching.</li>
-                <li>Built a Kubernetes static-analysis engine around scheduler bin-packing, increasing validation throughput by more than 300%.</li>
-                <li>Improved agentic code-generation success by 25%+ with memory, sandboxed execution, and eval-driven repair loops.</li>
-                <li>Raised agent reliability by 30%+ through deterministic evals, trace replay, and guarded tool execution.</li>
-              </ul>
-            </li>
-            <li>
-              <div class="experience-meta">
-                <time datetime="2024-05">May 2024 — Aug 2024</time>
-                <span>Seattle, WA</span>
-              </div>
-              <div class="experience-role">
-                <p>Amazon Web Services</p>
-                <h3>Software Development Engineer Intern</h3>
-              </div>
-              <ul role="list">
-                <li>Built a fault-tolerant OAuth-backed integration for synchronizing resource data across 150+ AWS services.</li>
-                <li>Reduced on-call ticketing by 35% through resilient resource observability.</li>
-                <li>Implemented SigV4 authentication and 5 ms LDAP authorization using configuration caching and Guice.</li>
-              </ul>
-            </li>
-            <li>
-              <div class="experience-meta">
-                <time datetime="2023-05">May 2023 — Aug 2023</time>
-                <span>Gaithersburg, MD</span>
-              </div>
-              <div class="experience-role">
-                <p>National Institute of Standards and Technology</p>
-                <h3>Software Engineering Intern</h3>
-              </div>
-              <ul role="list">
-                <li>Accelerated signal processing by 85% with multiprocessing, NumPy SIMD operations, and parallel execution.</li>
-                <li>Reduced runtime by 45 seconds through thread pooling, profiling, and C++ hot-path optimization.</li>
-                <li>Identified 14 bottlenecks and configured PyCUDA kernels and AWS autoscaling for GPU workloads.</li>
-              </ul>
-            </li>
-            <li>
-              <div class="experience-meta">
-                <time datetime="2023-01">Jan 2023 — May 2023</time>
-                <span>College Park, MD</span>
-              </div>
-              <div class="experience-role">
-                <p>University of Maryland Applied Research Laboratory</p>
-                <h3>Machine Learning Research Intern</h3>
-              </div>
-              <ul role="list">
-                <li>Cut Lorenz Attractor model runtime by 20 seconds with NumPy, Dask, and Bash automation.</li>
-                <li>Improved prediction F1 by 15% using KNN, Truncated SVD, Ball Trees, and SHAP.</li>
-                <li>Reduced system capture size by 25% with adaptive time-delay embedding built on PyEMD.</li>
-              </ul>
-            </li>
-          </ol>
-        </section>
-
-        <section class="content-section" id="projects" aria-labelledby="projects-title">
-          <header class="section-heading">
-            <div>
-              <p class="section-number">02 / Selected builds</p>
-              <h2 id="projects-title">Projects</h2>
-            </div>
-            <p>Measured systems work: throughput, tail latency, scaling, and reproducible evaluation.</p>
-          </header>
-
-          <ol class="project-list" role="list">
-            <li>
-              <a href="https://superred.simonsure.com/" rel="noreferrer">
-                <span class="project-number">01</span>
-                <span class="project-copy">
-                  <strong>SuperRed</strong>
-                  <span>Composable AI red-teaming across attackers, targets, benchmarks, and explicit threat models.</span>
-                </span>
-                <span class="project-tags">Python · AI Security</span>
-                <svg class="arrow" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-ne" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/rishabhsinha17/low-latency-llm-inference-server" rel="noreferrer">
-                <span class="project-number">02</span>
-                <span class="project-copy">
-                  <strong>Low-Latency LLM Inference</strong>
-                  <span>120 tokens/s on Llama-3-8B with 40% lower p99 latency at 32-request concurrency.</span>
-                </span>
-                <span class="project-tags">vLLM · C# · gRPC</span>
-                <svg class="arrow" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-ne" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/rishabhsinha17/rl-hyperparam-tuner" rel="noreferrer">
-                <span class="project-number">03</span>
-                <span class="project-copy">
-                  <strong>RL Hyperparameter Tuner</strong>
-                  <span>PPO-driven learning-rate tuning for ResNet-18, validated against a 910 img/s JAX ceiling.</span>
-                </span>
-                <span class="project-tags">PPO · PySpark · JAX</span>
-                <svg class="arrow" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-ne" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/rishabhsinha17/slurm-vision-rag-platform" rel="noreferrer">
-                <span class="project-number">04</span>
-                <span class="project-copy">
-                  <strong>SLURM Vision RAG</strong>
-                  <span>LLaVA-1.5-7B fine-tuning on four A100s with a 1M-vector retrieval index.</span>
-                </span>
-                <span class="project-tags">PyTorch · Slurm · RAG</span>
-                <svg class="arrow" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-ne" />
-                </svg>
-              </a>
-            </li>
-          </ol>
-        </section>
-
-        <section class="content-section" id="research" aria-labelledby="research-title">
-          <header class="section-heading">
-            <div>
-              <p class="section-number">03 / Research &amp; OSS</p>
-              <h2 id="research-title">Research</h2>
-            </div>
-            <p>Current work on evaluating and understanding the behavior of AI systems.</p>
-          </header>
-
-          <ol class="research-list" role="list">
-            <li>
-              <div class="research-meta">
-                <time datetime="2026">2026</time>
-                <span class="status status-preprint">Preprint</span>
-              </div>
-              <h3>
-                <a href="https://superred.simonsure.com/" rel="noreferrer">
-                  SuperRed: An AI Red-Teaming and System Security Framework
-                </a>
-              </h3>
-              <p class="research-authors">
-                Simon Sure · Sarthak Munshi · Rishabh Sinha · Zhun Wang · Dawn Song · ICLR 2027 submission
-              </p>
-              <p class="research-summary">
-                A composable framework separating attackers, systems under test, security claims,
-                and controllers. Security domains make adversary trust boundaries explicit,
-                enforced, and sweepable across experiments.
-              </p>
-              <dl class="research-metrics" aria-label="Framework scale">
-                <div><dt>35</dt><dd>modules at launch</dd></div>
-                <div><dt>4</dt><dd>swappable components</dd></div>
-              </dl>
-              <div class="research-footer research-links">
-                <a href="https://superred.simonsure.com/" rel="noreferrer">
-                  Project
-                  <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                </a>
-                <a href="https://github.com/RoldSI/superred" rel="noreferrer">
-                  Source
-                  <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div class="research-meta">
-                <time datetime="2026">2026</time>
-                <span class="status status-preprint">Preprint</span>
-              </div>
-              <h3>
-                <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
-                  Latent-State Auditing for Tool-Using Language Agents
-                </a>
-              </h3>
-              <p class="research-authors">Rishabh Sinha · UC Berkeley</p>
-              <p class="research-summary">
-                Adds activation-derived evidence immediately before agent tool use. Learned
-                NLA-text and raw-activation monitors flagged all 22 generated unsafe actions
-                before execution in the primary AgentDojo-grounded evaluation.
-              </p>
-              <dl class="research-metrics" aria-label="Latent-state auditing results">
-                <div><dt>22 / 22</dt><dd>unsafe actions flagged</dd></div>
-                <div><dt>2.0</dt><dd>mean steps of lead time</dd></div>
-              </dl>
-              <div class="research-footer research-links">
-                <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
-                  Code &amp; artifacts
-                  <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                </a>
-              </div>
-            </li>
-            <li class="research-wide">
-              <div class="research-meta">
-                <time datetime="2026">2026</time>
-                <span class="status">NeurIPS submission</span>
-              </div>
-              <h3>A Nonzero Final Learning Rate Floor Improves Transfer of Agent-Discovered Schedule Tweaks</h3>
-              <p class="research-authors">Rishabh Sinha · NeurIPS 2026 submission</p>
-              <p class="research-summary">
-                Tests whether an AutoResearch-discovered schedule change survives controlled
-                decomposition, five-seed reruns, and nearby depth transfer. A 0.05 final
-                learning-rate floor—not warmup—was the robust component in the fixed-budget
-                single-GPU harness.
-              </p>
-              <dl class="research-metrics" aria-label="Learning-rate floor results">
-                <div><dt>4 / 5</dt><dd>base seeds improved</dd></div>
-                <div><dt>5 / 5</dt><dd>depth-10 seeds improved</dd></div>
-                <div><dt>0.000877</dt><dd>base mean BPB gain</dd></div>
-                <div><dt>0.001570</dt><dd>depth-10 mean BPB gain</dd></div>
-              </dl>
-              <div class="research-footer research-links">
-                <a href="mailto:rsinha17@terpmail.umd.edu?subject=Schedule%20Tweaks%20Preprint">
-                  Request preprint
-                  <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                </a>
-              </div>
-            </li>
-          </ol>
-        </section>
-
-        <section class="content-section" id="education" aria-labelledby="education-title">
-          <header class="section-heading">
-            <div>
-              <p class="section-number">04 / Education</p>
-              <h2 id="education-title">Education</h2>
-            </div>
-            <p>Computer science, mathematics, data systems, and computational finance.</p>
-          </header>
-
-          <div class="education-grid">
-            <article>
-              <p class="education-year">2026</p>
-              <h3>University of California, Berkeley</h3>
-              <p>Master of Information and Data Science</p>
+          <section class="content-section" id="experience" aria-labelledby="experience-title">
+            <header class="section-heading">
               <div>
-                <span>Part-time professional program</span>
-                <span>GPA 4.0</span>
+                <p class="section-number">01 / Work</p>
+                <h2 id="experience-title">Experience</h2>
               </div>
-            </article>
-            <article>
-              <p class="education-year">2025</p>
-              <h3>University of Maryland, College Park</h3>
-              <p>Bachelor’s in Computer Science and Mathematics</p>
+              <p>
+                Production ML and distributed systems work across model serving,
+                retrieval, agent orchestration, and scientific computing.
+              </p>
+            </header>
+
+            <ol class="experience-list" role="list">
+              <li>
+                <div class="experience-meta">
+                  <time datetime="2026-03">Mar 2026 — Present</time>
+                  <span>Sunnyvale, CA</span>
+                </div>
+                <div class="experience-role">
+                  <p>Google</p>
+                  <h3>Software Engineer</h3>
+                </div>
+                <ul role="list">
+                  <li>Delivered Gemini intent-encoder post-training at 100+ QPS and sub-25 ms p99 with QLoRA/SFT on four TPUs.</li>
+                  <li>Lowered RAG retrieval p99 by 9% through fan-out DAGs and concurrent embedding-memory reads.</li>
+                  <li>Improved Chat search grounding through planner verbalization and context-service agent orchestration.</li>
+                  <li>Hardened serving reliability with safer Borg/Kubernetes rollouts, telemetry, and cell-level rollback.</li>
+                </ul>
+              </li>
+              <li>
+                <div class="experience-meta">
+                  <time datetime="2025-08">Aug 2025 — Mar 2026</time>
+                  <span>Seattle, WA</span>
+                </div>
+                <div class="experience-role">
+                  <p>Amazon Web Services</p>
+                  <h3>Software Development Engineer</h3>
+                </div>
+                <ul role="list">
+                  <li>Architected a Bedrock AgentCore and LangGraph multi-agent orchestrator, cutting inference latency 40% with semantic caching.</li>
+                  <li>Built a Kubernetes static-analysis engine around scheduler bin-packing, increasing validation throughput by more than 300%.</li>
+                  <li>Improved agentic code-generation success by 25%+ with memory, sandboxed execution, and eval-driven repair loops.</li>
+                  <li>Raised agent reliability by 30%+ through deterministic evals, trace replay, and guarded tool execution.</li>
+                </ul>
+              </li>
+              <li>
+                <div class="experience-meta">
+                  <time datetime="2024-05">May 2024 — Aug 2024</time>
+                  <span>Seattle, WA</span>
+                </div>
+                <div class="experience-role">
+                  <p>Amazon Web Services</p>
+                  <h3>Software Development Engineer Intern</h3>
+                </div>
+                <ul role="list">
+                  <li>Built a fault-tolerant OAuth-backed integration for synchronizing resource data across 150+ AWS services.</li>
+                  <li>Reduced on-call ticketing by 35% through resilient resource observability.</li>
+                  <li>Implemented SigV4 authentication and 5 ms LDAP authorization using configuration caching and Guice.</li>
+                </ul>
+              </li>
+              <li>
+                <div class="experience-meta">
+                  <time datetime="2023-05">May 2023 — Aug 2023</time>
+                  <span>Gaithersburg, MD</span>
+                </div>
+                <div class="experience-role">
+                  <p>National Institute of Standards and Technology</p>
+                  <h3>Software Engineering Intern</h3>
+                </div>
+                <ul role="list">
+                  <li>Accelerated signal processing by 85% with multiprocessing, NumPy SIMD operations, and parallel execution.</li>
+                  <li>Reduced runtime by 45 seconds through thread pooling, profiling, and C++ hot-path optimization.</li>
+                  <li>Identified 14 bottlenecks and configured PyCUDA kernels and AWS autoscaling for GPU workloads.</li>
+                </ul>
+              </li>
+              <li>
+                <div class="experience-meta">
+                  <time datetime="2023-01">Jan 2023 — May 2023</time>
+                  <span>College Park, MD</span>
+                </div>
+                <div class="experience-role">
+                  <p>University of Maryland Applied Research Laboratory</p>
+                  <h3>Machine Learning Research Intern</h3>
+                </div>
+                <ul role="list">
+                  <li>Cut Lorenz Attractor model runtime by 20 seconds with NumPy, Dask, and Bash automation.</li>
+                  <li>Improved prediction F1 by 15% using KNN, Truncated SVD, Ball Trees, and SHAP.</li>
+                  <li>Reduced system capture size by 25% with adaptive time-delay embedding built on PyEMD.</li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+          <section class="content-section" id="projects" aria-labelledby="projects-title">
+            <header class="section-heading">
               <div>
-                <span>Minor in Computational Finance</span>
-                <span>GPA 3.98</span>
+                <p class="section-number">02 / Selected builds</p>
+                <h2 id="projects-title">Projects</h2>
               </div>
-            </article>
-          </div>
-        </section>
+              <p>Measured systems work: throughput, tail latency, scaling, and reproducible evaluation.</p>
+            </header>
 
-        <section class="content-section" id="skills" aria-labelledby="skills-title">
-          <header class="section-heading">
-            <div>
-              <p class="section-number">05 / Toolkit</p>
-              <h2 id="skills-title">Skills</h2>
-            </div>
-            <p>A focused toolkit for production ML, distributed infrastructure, and performance work.</p>
-          </header>
+            <ol class="project-list" role="list">
+              <li>
+                <a href="https://superred.simonsure.com/" rel="noreferrer">
+                  <span class="project-number">01</span>
+                  <span class="project-copy">
+                    <strong>SuperRed</strong>
+                    <span>Composable AI red-teaming across attackers, targets, benchmarks, and explicit threat models.</span>
+                  </span>
+                  <span class="project-tags">Python · AI Security</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rishabhsinha17/low-latency-llm-inference-server" rel="noreferrer">
+                  <span class="project-number">02</span>
+                  <span class="project-copy">
+                    <strong>Low-Latency LLM Inference</strong>
+                    <span>120 tokens/s on Llama-3-8B with 40% lower p99 latency at 32-request concurrency.</span>
+                  </span>
+                  <span class="project-tags">vLLM · C# · gRPC</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rishabhsinha17/rl-hyperparam-tuner" rel="noreferrer">
+                  <span class="project-number">03</span>
+                  <span class="project-copy">
+                    <strong>RL Hyperparameter Tuner</strong>
+                    <span>PPO-driven learning-rate tuning for ResNet-18, validated against a 910 img/s JAX ceiling.</span>
+                  </span>
+                  <span class="project-tags">PPO · PySpark · JAX</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rishabhsinha17/slurm-vision-rag-platform" rel="noreferrer">
+                  <span class="project-number">04</span>
+                  <span class="project-copy">
+                    <strong>SLURM Vision RAG</strong>
+                    <span>LLaVA-1.5-7B fine-tuning on four A100s with a 1M-vector retrieval index.</span>
+                  </span>
+                  <span class="project-tags">PyTorch · Slurm · RAG</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+            </ol>
+          </section>
 
-          <dl class="skills-list">
-            <div>
-              <dt>Languages</dt>
-              <dd>Python, C++, Java, C, C#, Go, Rust, TypeScript, JavaScript, SQL, Scala</dd>
+          <section class="content-section" id="research" aria-labelledby="research-title">
+            <header class="section-heading">
+              <div>
+                <p class="section-number">03 / Research &amp; OSS</p>
+                <h2 id="research-title">Research</h2>
+              </div>
+              <p>Current work on evaluating and understanding the behavior of AI systems.</p>
+            </header>
+
+            <ol class="research-list" role="list">
+              <li>
+                <div class="research-meta">
+                  <time datetime="2026">2026</time>
+                  <span class="status status-preprint">Preprint</span>
+                </div>
+                <h3>
+                  <a href="https://superred.simonsure.com/" rel="noreferrer">
+                    SuperRed: An AI Red-Teaming and System Security Framework
+                  </a>
+                </h3>
+                <p class="research-authors">
+                  Simon Sure · Sarthak Munshi · Rishabh Sinha · Zhun Wang · Dawn Song · ICLR 2027 submission
+                </p>
+                <p class="research-summary">
+                  A composable framework separating attackers, systems under test, security claims,
+                  and controllers. Security domains make adversary trust boundaries explicit,
+                  enforced, and sweepable across experiments.
+                </p>
+                <dl class="research-metrics" aria-label="Framework scale">
+                  <div><dt>35</dt><dd>modules at launch</dd></div>
+                  <div><dt>4</dt><dd>swappable components</dd></div>
+                </dl>
+                <div class="research-footer research-links">
+                  <a href="https://superred.simonsure.com/" rel="noreferrer">
+                    Project
+                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+                  </a>
+                  <a href="https://github.com/RoldSI/superred" rel="noreferrer">
+                    Source
+                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="research-meta">
+                  <time datetime="2026">2026</time>
+                  <span class="status status-preprint">Preprint</span>
+                </div>
+                <h3>
+                  <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
+                    Latent-State Auditing for Tool-Using Language Agents
+                  </a>
+                </h3>
+                <p class="research-authors">Rishabh Sinha · UC Berkeley</p>
+                <p class="research-summary">
+                  Adds activation-derived evidence immediately before agent tool use. Learned
+                  NLA-text and raw-activation monitors flagged all 22 generated unsafe actions
+                  before execution in the primary AgentDojo-grounded evaluation.
+                </p>
+                <dl class="research-metrics" aria-label="Latent-state auditing results">
+                  <div><dt>22 / 22</dt><dd>unsafe actions flagged</dd></div>
+                  <div><dt>2.0</dt><dd>mean steps of lead time</dd></div>
+                </dl>
+                <div class="research-footer research-links">
+                  <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
+                    Code &amp; artifacts
+                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+                  </a>
+                </div>
+              </li>
+              <li class="research-wide">
+                <div class="research-meta">
+                  <time datetime="2026">2026</time>
+                  <span class="status">NeurIPS submission</span>
+                </div>
+                <h3>A Nonzero Final Learning Rate Floor Improves Transfer of Agent-Discovered Schedule Tweaks</h3>
+                <p class="research-authors">Rishabh Sinha · NeurIPS 2026 submission</p>
+                <p class="research-summary">
+                  Tests whether an AutoResearch-discovered schedule change survives controlled
+                  decomposition, five-seed reruns, and nearby depth transfer. A 0.05 final
+                  learning-rate floor—not warmup—was the robust component in the fixed-budget
+                  single-GPU harness.
+                </p>
+                <dl class="research-metrics" aria-label="Learning-rate floor results">
+                  <div><dt>4 / 5</dt><dd>base seeds improved</dd></div>
+                  <div><dt>5 / 5</dt><dd>depth-10 seeds improved</dd></div>
+                  <div><dt>0.000877</dt><dd>base mean BPB gain</dd></div>
+                  <div><dt>0.001570</dt><dd>depth-10 mean BPB gain</dd></div>
+                </dl>
+                <div class="research-footer research-links">
+                  <a href="mailto:rsinha17@terpmail.umd.edu?subject=Schedule%20Tweaks%20Preprint">
+                    Request preprint
+                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+                  </a>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="content-section" id="education" aria-labelledby="education-title">
+            <header class="section-heading">
+              <div>
+                <p class="section-number">04 / Education</p>
+                <h2 id="education-title">Education</h2>
+              </div>
+              <p>Computer science, mathematics, data systems, and computational finance.</p>
+            </header>
+
+            <div class="education-grid">
+              <article>
+                <p class="education-year">2026</p>
+                <h3>University of California, Berkeley</h3>
+                <p>Master of Information and Data Science</p>
+                <div>
+                  <span>Part-time professional program</span>
+                  <span>GPA 4.0</span>
+                </div>
+              </article>
+              <article>
+                <p class="education-year">2025</p>
+                <h3>University of Maryland, College Park</h3>
+                <p>Bachelor’s in Computer Science and Mathematics</p>
+                <div>
+                  <span>Minor in Computational Finance</span>
+                  <span>GPA 3.98</span>
+                </div>
+              </article>
             </div>
-            <div>
-              <dt>ML &amp; compute</dt>
-              <dd>PyTorch, JAX, vLLM, Ray, NumPy, PySpark, OpenCV, CUDA, TPUs</dd>
-            </div>
-            <div>
-              <dt>Systems</dt>
-              <dd>Kubernetes, Docker, Linux, Kafka, gRPC, AWS, Slurm, Prometheus, OpenTelemetry</dd>
-            </div>
-            <div>
-              <dt>Web &amp; data</dt>
-              <dd>React, Node.js, FastAPI, Flask, PostgreSQL, Pinecone, Grafana</dd>
-            </div>
-          </dl>
-        </section>
+          </section>
+
+          <section class="content-section" id="skills" aria-labelledby="skills-title">
+            <header class="section-heading">
+              <div>
+                <p class="section-number">05 / Toolkit</p>
+                <h2 id="skills-title">Skills</h2>
+              </div>
+              <p>A focused toolkit for production ML, distributed infrastructure, and performance work.</p>
+            </header>
+
+            <dl class="skills-list">
+              <div>
+                <dt>Languages</dt>
+                <dd>Python, C++, Java, C, C#, Go, Rust, TypeScript, JavaScript, SQL, Scala</dd>
+              </div>
+              <div>
+                <dt>ML &amp; compute</dt>
+                <dd>PyTorch, JAX, vLLM, Ray, NumPy, PySpark, OpenCV, CUDA, TPUs</dd>
+              </div>
+              <div>
+                <dt>Systems</dt>
+                <dd>Kubernetes, Docker, Linux, Kafka, gRPC, AWS, Slurm, Prometheus, OpenTelemetry</dd>
+              </div>
+              <div>
+                <dt>Web &amp; data</dt>
+                <dd>React, Node.js, FastAPI, Flask, PostgreSQL, Pinecone, Grafana</dd>
+              </div>
+            </dl>
+          </section>
         </main>
 
         <footer class="site-footer">
