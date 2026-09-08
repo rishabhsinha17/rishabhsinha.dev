@@ -186,10 +186,11 @@
 
         <nav class="section-nav" aria-label="Page sections">
           <a href="#experience"><span>01</span>Experience</a>
-          <a href="#projects"><span>02</span>Projects</a>
-          <a href="#research"><span>03</span>Research</a>
-          <a href="#education"><span>04</span>Education</a>
-          <a href="#skills"><span>05</span>Skills</a>
+          <a href="#open-source"><span>02</span>Open source</a>
+          <a href="#projects"><span>03</span>Projects</a>
+          <a href="#research"><span>04</span>Research</a>
+          <a href="#education"><span>05</span>Education</a>
+          <a href="#skills"><span>06</span>Skills</a>
         </nav>
 
         <a class="email-link" href="mailto:rsinha17@terpmail.umd.edu">
@@ -227,7 +228,8 @@
                 <ul role="list">
                   <li>Delivered Gemini intent-encoder post-training at 100+ QPS and sub-25 ms p99 with QLoRA/SFT on four TPUs.</li>
                   <li>Lowered RAG retrieval p99 by 9% through fan-out DAGs and concurrent embedding-memory reads.</li>
-                  <li>Improved Chat search grounding through planner verbalization and context-service agent orchestration.</li>
+                  <li>Improved LLM serving with prefix-cache reuse across disaggregated prefill and decode,
+                    reducing KV recomputation.</li>
                   <li>Hardened serving reliability with safer Borg/Kubernetes rollouts, telemetry, and cell-level rollback.</li>
                 </ul>
               </li>
@@ -258,7 +260,6 @@
                 </div>
                 <ul role="list">
                   <li>Built a fault-tolerant OAuth-backed integration for synchronizing resource data across 150+ AWS services.</li>
-                  <li>Reduced on-call ticketing by 35% through resilient resource observability.</li>
                   <li>Implemented SigV4 authentication and 5 ms LDAP authorization using configuration caching and Guice.</li>
                 </ul>
               </li>
@@ -274,23 +275,85 @@
                 <ul role="list">
                   <li>Accelerated signal processing by 85% with multiprocessing, NumPy SIMD operations, and parallel execution.</li>
                   <li>Reduced runtime by 45 seconds through thread pooling, profiling, and C++ hot-path optimization.</li>
-                  <li>Identified 14 bottlenecks and configured PyCUDA kernels and AWS autoscaling for GPU workloads.</li>
                 </ul>
               </li>
+            </ol>
+          </section>
+
+          <section class="content-section" id="open-source" aria-labelledby="open-source-title">
+            <header class="section-heading">
+              <div>
+                <p class="section-number">02 / Upstream</p>
+                <h2 id="open-source-title">Open source</h2>
+              </div>
+              <p>Merged contributions to the open LLM serving stack.</p>
+            </header>
+
+            <ol class="project-list" role="list">
               <li>
-                <div class="experience-meta">
-                  <time datetime="2023-01">Jan 2023 — May 2023</time>
-                  <span>College Park, MD</span>
-                </div>
-                <div class="experience-role">
-                  <p>University of Maryland Applied Research Laboratory</p>
-                  <h3>Machine Learning Research Intern</h3>
-                </div>
-                <ul role="list">
-                  <li>Cut Lorenz Attractor model runtime by 20 seconds with NumPy, Dask, and Bash automation.</li>
-                  <li>Improved prediction F1 by 15% using KNN, Truncated SVD, Ball Trees, and SHAP.</li>
-                  <li>Reduced system capture size by 25% with adaptive time-delay embedding built on PyEMD.</li>
-                </ul>
+                <a href="https://github.com/ovg-project/kvcached/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
+                  <span class="project-number">01</span>
+                  <span class="project-copy">
+                    <strong>kvcached</strong>
+                    <span>Elastic KV-cache sharing across co-located LLMs through GPU virtual memory, integrated with vLLM and SGLang. Contributed fp8 per-token-head KV quantization, allocation rollback on mid-alloc failure, and the cross-layer KV-sharing binding fix. A lifecycle-readiness and failure-propagation workstream is in review with maintainer sign-off.</span>
+                  </span>
+                  <span class="project-tags">vLLM · SGLang · KV cache</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/search?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged+org%3Avllm-project&amp;type=pullrequests" rel="noreferrer">
+                  <span class="project-number">02</span>
+                  <span class="project-copy">
+                    <strong>vLLM ecosystem</strong>
+                    <span>Quantization, routing, and serving components across six repositories in the vLLM org: a per-column quantization-range hoist in compressed-tensors, calibration-failure diagnostics in llm-compressor, a response-format correctness fix in semantic-router, and a controller panic fix in aibrix.</span>
+                  </span>
+                  <span class="project-tags">Quantization · Routing · Serving</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kvcache-ai/Mooncake/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
+                  <span class="project-number">03</span>
+                  <span class="project-copy">
+                    <strong>Mooncake</strong>
+                    <span>KV-cache transfer engine behind disaggregated serving. Migrated the master-service suite to a scenario DSL and fixed an RDMA endpoint leak surfaced by the nightly sanitizer run.</span>
+                  </span>
+                  <span class="project-tags">C++ · RDMA</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/tile-ai/tilelang/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
+                  <span class="project-number">04</span>
+                  <span class="project-copy">
+                    <strong>TileLang</strong>
+                    <span>DSL and compiler for high-performance GPU kernels. Contributed eager-frontend correctness fixes and replaced cloudpickle with JSON in the kernel-parameter cache.</span>
+                  </span>
+                  <span class="project-tags">Compiler · Kernels</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/llm-d/llm-d/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
+                  <span class="project-number">05</span>
+                  <span class="project-copy">
+                    <strong>llm-d</strong>
+                    <span>Kubernetes-native distributed inference. Corrected the endpoint-picker configuration schema documentation.</span>
+                  </span>
+                  <span class="project-tags">Go · Kubernetes</span>
+                  <svg class="arrow" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-ne" />
+                  </svg>
+                </a>
               </li>
             </ol>
           </section>
@@ -298,7 +361,7 @@
           <section class="content-section" id="projects" aria-labelledby="projects-title">
             <header class="section-heading">
               <div>
-                <p class="section-number">02 / Selected builds</p>
+                <p class="section-number">03 / Selected builds</p>
                 <h2 id="projects-title">Projects</h2>
               </div>
               <p>Measured systems work: throughput, tail latency, scaling, and reproducible evaluation.</p>
@@ -363,7 +426,7 @@
           <section class="content-section" id="research" aria-labelledby="research-title">
             <header class="section-heading">
               <div>
-                <p class="section-number">03 / Research &amp; OSS</p>
+                <p class="section-number">04 / Papers</p>
                 <h2 id="research-title">Research</h2>
               </div>
               <p>Current work on evaluating and understanding the behavior of AI systems.</p>
@@ -393,6 +456,10 @@
                   <div><dt>4</dt><dd>swappable components</dd></div>
                 </dl>
                 <div class="research-footer research-links">
+                  <a href="https://drive.google.com/file/d/1byrc2J4vblcpl2Ghjdi5chGPdFAEpE7Z/view" rel="noreferrer">
+                    Paper
+                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+                  </a>
                   <a href="https://superred.simonsure.com/" rel="noreferrer">
                     Project
                     <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
@@ -406,24 +473,29 @@
               <li>
                 <div class="research-meta">
                   <time datetime="2026">2026</time>
-                  <span class="status status-preprint">Preprint</span>
+                  <span class="status">Under review</span>
                 </div>
                 <h3>
                   <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
-                    Latent-State Auditing for Tool-Using Language Agents
+                    Exposure Is Not Commitment: Double-Stratified Evaluation of Latent Monitors for Tool-Using Agents
                   </a>
                 </h3>
-                <p class="research-authors">Rishabh Sinha · UC Berkeley</p>
+                <p class="research-authors">Rishabh Sinha · UC Berkeley · Agents in the Wild @ NeurIPS 2026</p>
                 <p class="research-summary">
-                  Adds activation-derived evidence immediately before agent tool use. Learned
-                  NLA-text and raw-activation monitors flagged all 22 generated unsafe actions
-                  before execution in the primary AgentDojo-grounded evaluation.
+                  Separates injection exposure from behavioral commitment, in both the
+                  evaluation and the training population. Monitors trained on the naive
+                  contrast mostly learn exposure; retrained on exposed cases only, the same
+                  probes predict the agent&rsquo;s own unsafe tool call up to two steps early.
                 </p>
-                <dl class="research-metrics" aria-label="Latent-state auditing results">
-                  <div><dt>22 / 22</dt><dd>unsafe actions flagged</dd></div>
-                  <div><dt>2.0</dt><dd>mean steps of lead time</dd></div>
+                <dl class="research-metrics" aria-label="Latent monitor results">
+                  <div><dt>0.85 – 0.91</dt><dd>commitment AUROC, three models</dd></div>
+                  <div><dt>2 steps</dt><dd>lead time, trajectory maximum</dd></div>
                 </dl>
                 <div class="research-footer research-links">
+                  <a href="https://drive.google.com/file/d/1CWjtkRg12wyVHOV6M9hr9v15-qREJ33x/view" rel="noreferrer">
+                    Paper
+                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+                  </a>
                   <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
                     Code &amp; artifacts
                     <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
@@ -433,10 +505,10 @@
               <li class="research-wide">
                 <div class="research-meta">
                   <time datetime="2026">2026</time>
-                  <span class="status">NeurIPS submission</span>
+                  <span class="status">Under review</span>
                 </div>
                 <h3>A Nonzero Final Learning Rate Floor Improves Transfer of Agent-Discovered Schedule Tweaks</h3>
-                <p class="research-authors">Rishabh Sinha · NeurIPS 2026 submission</p>
+                <p class="research-authors">Rishabh Sinha · NeurIPS 2026 main conference</p>
                 <p class="research-summary">
                   Tests whether an AutoResearch-discovered schedule change survives controlled
                   decomposition, five-seed reruns, and nearby depth transfer. A 0.05 final
@@ -450,8 +522,8 @@
                   <div><dt>0.001570</dt><dd>depth-10 mean BPB gain</dd></div>
                 </dl>
                 <div class="research-footer research-links">
-                  <a href="mailto:rsinha17@terpmail.umd.edu?subject=Schedule%20Tweaks%20Preprint">
-                    Request preprint
+                  <a href="https://drive.google.com/file/d/1zxLHzaeER3M-akRGKCYDJdwB_mN0WR3x/view" rel="noreferrer">
+                    Paper
                     <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
                   </a>
                 </div>
@@ -462,7 +534,7 @@
           <section class="content-section" id="education" aria-labelledby="education-title">
             <header class="section-heading">
               <div>
-                <p class="section-number">04 / Education</p>
+                <p class="section-number">05 / Education</p>
                 <h2 id="education-title">Education</h2>
               </div>
               <p>Computer science, mathematics, data systems, and computational finance.</p>
@@ -493,28 +565,28 @@
           <section class="content-section" id="skills" aria-labelledby="skills-title">
             <header class="section-heading">
               <div>
-                <p class="section-number">05 / Toolkit</p>
+                <p class="section-number">06 / Toolkit</p>
                 <h2 id="skills-title">Skills</h2>
               </div>
-              <p>A focused toolkit for production ML, distributed infrastructure, and performance work.</p>
+              <p>What the work above is built with.</p>
             </header>
 
             <dl class="skills-list">
               <div>
                 <dt>Languages</dt>
-                <dd>Python, C++, Java, C, C#, Go, Rust, TypeScript, JavaScript, SQL, Scala</dd>
+                <dd>Python, Go, C++, C, SQL</dd>
+              </div>
+              <div>
+                <dt>Inference &amp; serving</dt>
+                <dd>vLLM, SGLang, KV-cache systems, prefix caching, disaggregated serving, FP8 and GPTQ quantization</dd>
               </div>
               <div>
                 <dt>ML &amp; compute</dt>
-                <dd>PyTorch, JAX, vLLM, Ray, NumPy, PySpark, OpenCV, CUDA, TPUs</dd>
+                <dd>PyTorch, JAX, CUDA, Triton, TPUs</dd>
               </div>
               <div>
                 <dt>Systems</dt>
-                <dd>Kubernetes, Docker, Linux, Kafka, gRPC, AWS, Slurm, Prometheus, OpenTelemetry</dd>
-              </div>
-              <div>
-                <dt>Web &amp; data</dt>
-                <dd>React, Node.js, FastAPI, Flask, PostgreSQL, Pinecone, Grafana</dd>
+                <dd>Kubernetes, Linux, RDMA, gRPC, Ray, Slurm, Docker, OpenTelemetry</dd>
               </div>
             </dl>
           </section>
