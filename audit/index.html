@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inference cost audit · Rishabh Sinha</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Fixed-fee cost and capacity audit for teams self-hosting open models on vLLM or SGLang.">
+<style>
+:root{--bg:#fbfbf9;--fg:#16191f;--mut:#5d6470;--line:#e4e4df;--card:#ffffff;--acc:#1f5fbf;--acc2:#e8f0fc;--on-acc:#ffffff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101317;--fg:#e8eaee;--mut:#9aa1ad;--line:#262b33;--card:#161a20;--acc:#7aa7ff;--acc2:#1a2433;--on-acc:#0b1220}}
+:root[data-theme="dark"]{--bg:#101317;--fg:#e8eaee;--mut:#9aa1ad;--line:#262b33;--card:#161a20;--acc:#7aa7ff;--acc2:#1a2433;--on-acc:#0b1220}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 64px}
+h1{font-size:34px;line-height:1.15;margin:0 0 16px;letter-spacing:-.01em}
+h2{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:40px 0 10px}
+p{margin:0 0 14px}
+.lede{font-size:18px;color:var(--fg)}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:8px}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.tier h3{margin:0 0 2px;font-size:16px}
+.price{font-size:24px;font-weight:650;margin:2px 0 8px}
+.price small{font-size:13px;font-weight:400;color:var(--mut)}
+.tier p{font-size:14px;color:var(--mut);margin:0}
+.tier.main{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid var(--acc)}
+.btn.primary{background:var(--acc);color:var(--on-acc)}
+.btn.ghost{color:var(--acc);background:var(--acc2)}
+.contact{margin-top:14px;color:var(--mut);font-size:14px}.addr{user-select:all;color:var(--fg)}
+footer{color:var(--mut);font-size:13px;margin-top:48px;border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--acc)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Inference cost audit</h1>
+  <p class="lede">You self-host open models on vLLM or SGLang. GPU rental prices rose about a fifth in September, and both engines put out a release every two weeks that can change defaults you never set on purpose. The audit measures the traffic your deployment serves within your latency targets today, finds configuration changes that serve the same traffic on fewer GPUs, and leaves you the benchmark harness so you can rerun every number.</p>
+
+  <h2>About me</h2>
+  <p>I'm Rishabh Sinha, and LLM serving infrastructure is the work I do. My merged contributions span 14 open-source serving projects. Of those, kvcached holds the largest share, and I help triage issues there. I wrote <a href="https://github.com/rishabhsinha17/servetune">servetune</a>, the open-source harness the audit runs on.</p>
+
+  <h2>Scope</h2>
+  <p>A sample of your real traffic, or a synthetic profile matched to its length distribution, runs against your current setup and then against candidate changes one at a time. Candidates usually include FP8 weights and FP8 KV cache, prefill budget and batch limits, speculative decoding, KV offload, and replica sizing. Prefix caching gets special attention because gateways and chat templates often defeat it without anyone noticing.</p>
+  <p>Each candidate gets three numbers at your SLO: capacity, cost per million output tokens, and replicas needed at your peak. Before you roll out anything that can change model output, I mark it for a check on your own eval set. On a sample agent workload on one H100, one engine flag raised capacity within the same latency targets from 5.4 to 8.2 requests per second, and turning prefix caching off cut it to 2.8. <a href="sample-report.html">See a sample report.</a></p>
+
+  <h2>Deliverables</h2>
+  <p>You receive a written report ranking changes by measured savings, the exact flags in rollout order, the harness with raw results, and a 60 minute readout call.</p>
+
+  <h2>Process</h2>
+  <p>After a short intake you share configs and metrics, plus either a traffic sample or its rate and length statistics. Benchmarks run on a staging replica you provide or on rented GPUs of the same type, billed at cost. Apart from the readout everything is asynchronous, and nothing needs production access.</p>
+
+  <h2>Pricing</h2>
+  <div class="tiers">
+    <div class="tier">
+      <h3>Config review</h3>
+      <div class="price">$2,500 <small>one week</small></div>
+      <p>Ranked recommendations from your configs and traffic statistics, plus a list of what changed in the engine releases since your version, without benchmark runs.</p>
+    </div>
+    <div class="tier main">
+      <h3>Full audit</h3>
+      <div class="price">$9,500 <small>two weeks</small></div>
+      <p>Adds measured results on your hardware type. If the measured saving at your SLO comes in under 15 percent, you pay the config review price instead.</p>
+    </div>
+    <div class="tier">
+      <h3>Release re-tune</h3>
+      <div class="price">$3,500 <small>per month</small></div>
+      <p>Each new vLLM or SGLang release gets checked against your configuration. Anything likely to move cost by more than a few percent gets re-benchmarked, and you receive a short note on what to change. Up to 8 hours of async help a month, and no on-call.</p>
+    </div>
+  </div>
+
+  <h2>Limits</h2>
+  <p>Production on-call is not part of any package, and there is no platform to buy. If a managed endpoint would be cheaper for your traffic, the report will say so.</p>
+
+  <div class="cta">
+    <a class="btn primary" href="mailto:rsinha17@terpmail.umd.edu?subject=Inference%20cost%20audit">Email me for a 20 minute call</a>
+    <a class="btn ghost" href="intake.html">See the intake questions</a>
+  </div>
+  <p class="contact">Email: <span class="addr">rsinha17@terpmail.umd.edu</span></p>
+
+  <footer>Rishabh Sinha · <a href="https://rishabhsinha.dev">rishabhsinha.dev</a> · <a href="https://github.com/rishabhsinha17">github.com/rishabhsinha17</a></footer>
+</main>
+</body>
+</html>

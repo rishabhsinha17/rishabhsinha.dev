@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit intake questions</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
+:root{--bg:#fbfbf9;--fg:#16191f;--mut:#5d6470;--line:#e4e4df;--card:#ffffff;--acc:#1f5fbf;--acc2:#e8f0fc;--on-acc:#ffffff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101317;--fg:#e8eaee;--mut:#9aa1ad;--line:#262b33;--card:#161a20;--acc:#7aa7ff;--acc2:#1a2433;--on-acc:#0b1220}}
+:root[data-theme="dark"]{--bg:#101317;--fg:#e8eaee;--mut:#9aa1ad;--line:#262b33;--card:#161a20;--acc:#7aa7ff;--acc2:#1a2433;--on-acc:#0b1220}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 64px}
+h1{font-size:34px;line-height:1.15;margin:0 0 16px;letter-spacing:-.01em}
+h2{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:40px 0 10px}
+p{margin:0 0 14px}
+.lede{font-size:18px;color:var(--fg)}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:8px}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.tier h3{margin:0 0 2px;font-size:16px}
+.price{font-size:24px;font-weight:650;margin:2px 0 8px}
+.price small{font-size:13px;font-weight:400;color:var(--mut)}
+.tier p{font-size:14px;color:var(--mut);margin:0}
+.tier.main{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid var(--acc)}
+.btn.primary{background:var(--acc);color:var(--on-acc)}
+.btn.ghost{color:var(--acc);background:var(--acc2)}
+.contact{margin-top:14px;color:var(--mut);font-size:14px}.addr{user-select:all;color:var(--fg)}
+footer{color:var(--mut);font-size:13px;margin-top:48px;border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--acc)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+</style></head>
+<body><main><h1>Intake: inference cost audit</h1><p>Answer what you can. Ranges are fine. Nothing here needs secrets or production access.</p><h2>Models and engine</h2><ol><li>Which models do you serve (name, size, precision, any fine-tunes)?</li><li>Engine and version (vLLM, SGLang, other), and how you launch it (paste the command or Helm values).</li><li>Any gateway or router in front (vLLM router, llm-d, LiteLLM, Envoy, a custom proxy)?</li></ol><h2>Hardware and spend</h2><ol><li>GPU type and count per replica, number of replicas, cloud or on-prem.</li><li>What you pay per GPU-hour, or your monthly inference bill.</li><li>Autoscaling: on or off, and what it scales on.</li></ol><h2>Traffic</h2><ol><li>Peak and average requests per second.</li><li>Typical input and output lengths (median and p95 if you have them).</li><li>How much of each prompt is shared across requests (system prompt, tool schemas, RAG preamble), roughly in tokens.</li><li>Streaming or not, and whether requests come from an OpenAI-style, Anthropic-style or custom API.</li><li>Can you share a sample of anonymized request metadata (timestamps, input and output token counts, no content)?</li></ol><h2>Targets</h2><ol><li>Latency targets: time to first token and time per output token, at p50 and p95.</li><li>Quality guardrails: which eval set, and whether quantized weights or KV cache are acceptable in principle.</li></ol><h2>Logistics</h2><ol><li>Can you provide a staging replica of the same GPU type, or should benchmarks run on rented GPUs at cost?</li><li>Who reads the report, and what decision does it feed (budget, capacity plan, migration)?</li></ol>
+<p class="contact">Send your answers to <span class="addr">rsinha17@terpmail.umd.edu</span>. Ranges and rough numbers are fine.</p>
+<p><a href="./">Back to the inference cost audit</a></p></main></body></html>
