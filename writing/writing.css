@@ -1,0 +1,410 @@
+/*
+  Long-form pages under /writing/. Loaded after /styles.css and built only from
+  its tokens (paper, ink, rule, accent; display, sans and mono stacks), so the
+  posts follow the homepage in both themes without new colours or fonts.
+*/
+
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 150ms ease;
+}
+
+.header-link:hover,
+.header-link[aria-current="page"] {
+  color: var(--accent);
+}
+
+/* ---------- Post ---------- */
+
+.post {
+  padding: clamp(3rem, 7vw, 6rem) max(1.25rem, env(safe-area-inset-right))
+    clamp(4rem, 8vw, 7rem) max(1.25rem, env(safe-area-inset-left));
+}
+
+.post-inner {
+  max-width: 43rem;
+  margin: 0 auto;
+}
+
+.post-header .eyebrow {
+  margin-bottom: 1.6rem;
+}
+
+.post-title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 2.2rem 0 0;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tldr {
+  margin: 2.6rem 0 3rem;
+  padding: 1.6rem 1.75rem 1.5rem;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  background: var(--paper-raised);
+}
+
+.tldr-label {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tldr ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tldr li {
+  position: relative;
+  margin: 0 0 0.85rem;
+  padding-left: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.tldr li:last-child {
+  margin-bottom: 0;
+}
+
+.tldr li::before {
+  position: absolute;
+  top: 0.78em;
+  left: 0;
+  width: 0.7rem;
+  height: 1px;
+  background: var(--accent);
+  content: "";
+}
+
+.tldr code,
+.prose code {
+  padding: 0.08em 0.35em;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper-raised);
+  font-family: var(--mono);
+  font-size: 0.8em;
+}
+
+.tldr a,
+.prose a {
+  text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.tldr a:hover,
+.prose a:hover {
+  color: var(--accent);
+}
+
+.prose {
+  counter-reset: section;
+  font-family: var(--display);
+  font-size: clamp(1.08rem, 1.15vw, 1.19rem);
+  line-height: 1.7;
+}
+
+.prose p {
+  margin: 0 0 1.2em;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.2em;
+  padding-left: 1.3em;
+}
+
+.prose li {
+  margin: 0.35em 0;
+}
+
+.prose h2 {
+  margin: 3.6rem 0 1.3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+  counter-increment: section;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.2vw, 2.55rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.prose h2::before {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  content: counter(section, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.prose h3 {
+  margin: 2.5rem 0 0.8rem;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+/* Whole-paragraph italics in the drafts are context notes (epistemic status,
+   how the work was run, the setting of a quoted transcript). */
+.prose .note {
+  padding-left: 1rem;
+  border-left: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prose blockquote {
+  margin: 1.8rem 0;
+  padding: 1.15rem 1.4rem;
+  border-left: 3px solid var(--accent);
+  background: var(--paper-raised);
+  font-family: var(--sans);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.prose blockquote p {
+  margin: 0 0 0.8em;
+}
+
+.prose blockquote .note {
+  padding-left: 0;
+  border-left: 0;
+  font-size: 0.84rem;
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.prose figure {
+  margin: 2.8rem 0;
+}
+
+.prose figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: clamp(0.4rem, 1.4vw, 0.9rem);
+  border: 1px solid var(--rule);
+  background: #fff;
+}
+
+.prose figcaption {
+  margin-top: 0.85rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.prose sup {
+  line-height: 0;
+}
+
+.prose sup a {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72em;
+  text-decoration: none;
+}
+
+.prose .footnote {
+  margin-top: 3.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.prose .footnote::before {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  content: "Notes";
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.prose .footnote hr {
+  display: none;
+}
+
+.prose .footnote ol {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.prose .footnote li {
+  margin: 0.5em 0;
+}
+
+.prose .footnote p {
+  margin: 0;
+}
+
+.prose .footnote-backref {
+  margin-left: 0.3em;
+  color: var(--faint);
+  text-decoration: none;
+}
+
+/* Figures run a little wider than the text column once there is room. */
+@media (min-width: 1000px) {
+  .prose figure {
+    margin-right: -4.5rem;
+    margin-left: -4.5rem;
+  }
+}
+
+.post-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-pager a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem 0;
+  text-decoration: none;
+}
+
+.post-pager .next {
+  align-items: flex-end;
+  grid-column: 2;
+  text-align: right;
+}
+
+.post-pager .label {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.post-pager .title {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  transition: color 150ms ease;
+}
+
+.post-pager a:hover .title {
+  color: var(--accent);
+}
+
+/* ---------- Writing index ---------- */
+
+.writing-index .section-heading h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(4.5rem, 6vw, 6.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.writing-index {
+  max-width: 1180px;
+  margin: 0 auto;
+  border-bottom: 0;
+}
+
+@media (max-width: 680px) {
+  .tldr {
+    padding: 1.3rem 1.1rem 1.2rem;
+  }
+
+  .post-pager {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .post-pager .next {
+    align-items: flex-start;
+    grid-column: 1;
+    text-align: left;
+  }
+
+  .post-pager a + a {
+    border-top: 1px solid var(--rule);
+  }
+
+  .writing-index .section-heading {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+@media print {
+  .site-header,
+  .post-pager,
+  .site-footer {
+    display: none;
+  }
+
+  .prose figure img {
+    border: 0;
+  }
+}

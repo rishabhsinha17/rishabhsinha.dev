@@ -1,41 +1,179 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<title>Writing · Rishabh Sinha</title>
-<meta name="description" content="Mini projects from the exploration phase of Neel Nanda&#x27;s MATS 12 stream.">
-<link rel="canonical" href="https://rishabhsinha.dev/writing/">
-<meta property="og:title" content="Writing · Rishabh Sinha">
-<meta property="og:description" content="Mini projects from the exploration phase of Neel Nanda&#x27;s MATS 12 stream.">
-<meta property="og:type" content="article"><meta property="og:url" content="https://rishabhsinha.dev/writing/">
-<style>
-:root{--bg:#fff;--fg:#1a1f2b;--mut:#5b6474;--line:#e3e7ee;--acc:#2a6fdb;--code:#f3f5f9;--quote:#f6f8fb}
-@media (prefers-color-scheme:dark){:root{--bg:#11151c;--fg:#e6e9ef;--mut:#9aa3b2;--line:#2a313d;--acc:#6ea0ff;--code:#1b212b;--quote:#161b23}}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;max-width:760px;margin:0 auto;padding:24px 16px 64px}
-a{color:var(--acc)}a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-nav{font-size:14px;color:var(--mut);margin-bottom:28px}nav a{text-decoration:none}nav a:hover{text-decoration:underline}
-h1{font-size:30px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
-.meta{color:var(--mut);font-size:14px;margin:0 0 28px}
-h2{font-size:22px;line-height:1.3;margin:40px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
-h3{font-size:18px;line-height:1.35;margin:28px 0 8px}
-p{margin:0 0 14px}ul,ol{padding-left:24px;margin:0 0 14px}li{margin:4px 0}
-code{background:var(--code);padding:1px 5px;border-radius:4px;font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-blockquote{margin:16px 0;padding:10px 16px;background:var(--quote);border-left:3px solid var(--line);border-radius:4px}
-blockquote p:last-child{margin-bottom:0}
-figure{margin:24px 0}figure img{display:block;width:100%;height:auto;border-radius:6px;background:#fff;border:1px solid var(--line)}
-figcaption{color:var(--mut);font-size:14.5px;line-height:1.5;margin-top:8px}
-.footnote{font-size:14.5px;color:var(--mut);margin-top:40px}.footnote hr{border:0;border-top:1px solid var(--line)}
-sup{line-height:0}
-.list article{padding:18px 0;border-bottom:1px solid var(--line)}.list h2{border:0;margin:0 0 6px;font-size:20px}
-.list h2 a{text-decoration:none}.list h2 a:hover{text-decoration:underline}.list p{color:var(--mut);margin:0}
-@media print{nav{display:none}body{max-width:none}}
-</style></head>
-<body><nav><a href="/">rishabhsinha.dev</a></nav>
-<h1>Writing</h1>
-<p class="meta">Mini projects from the exploration phase of Neel Nanda's MATS 12 stream, October 2026.</p>
-<div class="list"><article><h2><a href="/writing/codenames-cot-token-ban/">I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words.</a></h2><p>On 200 new Codenames boards, full reasoning improved the spymaster&#x27;s score from 1.29 to 2.00 team words per clue.</p></article>
-<article><h2><a href="/writing/inkling-reply-opener/">Inkling plans to admit it&#x27;s an AI. Force the first words of its reply, and it may claim to be human.</a></h2><p>Ethan Hadley found a customer-support case where Inkling&#x27;s written reasoning says to admit it&#x27;s an AI, but its reply sometimes claims to be from a real person.</p></article>
-<article><h2><a href="/writing/thought-branches-matched-control/">Thought Branches&#x27; transplant curves jump, but the matched control complicates the story</a></h2><p>I reran Thought Branches&#x27; hint-transplant experiment on its released model and data, adding a control: no-hint chains of thought (CoTs) that reached the same wrong answer.</p></article>
-<article><h2><a href="/writing/eval-awareness-honeypot/">Can a model game an evaluation without saying it noticed? I couldn&#x27;t get the decisive runs</a></h2><p>I tried to test whether saying &quot;this is a honeypot&quot; is necessary for a model to game an evaluation. Neither route gave me enough suitable runs, so the central question remains unanswered.</p></article>
-<article><h2><a href="/writing/self-recognition-label-effect/">A judge rated the same transcript higher when told it was its own</a></h2><p>I wanted to test whether an AI judge treats its own agent transcripts differently. The actual author made no detectable difference to its ratings.</p></article></div>
-</body></html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Mini projects from the exploration phase of Neel Nanda’s MATS 12 stream, October 2026." />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f0e9" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#171714" />
+    <meta property="og:title" content="Writing · Rishabh Sinha" />
+    <meta property="og:description" content="Mini projects from the exploration phase of Neel Nanda’s MATS 12 stream, October 2026." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rishabhsinha.dev/writing/" />
+    <meta property="og:site_name" content="Rishabh Sinha" />
+    <meta property="og:image" content="https://rishabhsinha.dev/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Writing · Rishabh Sinha</title>
+    <link rel="canonical" href="https://rishabhsinha.dev/writing/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/writing/writing.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-star" viewBox="0 0 16 16">
+        <path
+          d="M8 0c.6 4.4 3.6 7.4 8 8-4.4.6-7.4 3.6-8 8-.6-4.4-3.6-7.4-8-8 4.4-.6 7.4-3.6 8-8Z"
+          fill="currentColor"
+        />
+      </symbol>
+      <symbol id="i-contrast" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="6.4" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8 1.6a6.4 6.4 0 0 0 0 12.8Z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="3.1" fill="currentColor" />
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        >
+          <path d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8" />
+          <path d="m3 3 1.3 1.3M11.7 11.7 13 13M13 3l-1.3 1.3M4.3 11.7 3 13" />
+        </g>
+      </symbol>
+      <symbol id="i-arrow-ne" viewBox="0 0 16 16">
+        <path
+          d="M4.4 11.6 11.6 4.4M5.9 4.4h5.7v5.7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 16 16">
+        <path
+          d="M8 13.1V3.4M3.8 7.6 8 3.4l4.2 4.2"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+    </svg>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" id="top">
+  <a class="wordmark" href="/" aria-label="Rishabh Sinha, home">
+    <svg class="wordmark-mark" aria-hidden="true" focusable="false"><use href="#i-star" /></svg>
+    <span>rishabh sinha</span>
+  </a>
+  <div class="header-actions">
+    <a class="header-link" href="/writing/" aria-current="page">Writing</a>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+      <svg class="theme-icon theme-icon-light" aria-hidden="true" focusable="false"><use href="#i-contrast" /></svg>
+      <svg class="theme-icon theme-icon-dark" aria-hidden="true" focusable="false"><use href="#i-sun" /></svg>
+    </button>
+  </div>
+</header>
+<main id="main-content">
+  <section class="content-section writing-index" aria-labelledby="writing-title">
+    <header class="section-heading">
+      <div>
+        <p class="section-number">05 / Notes</p>
+        <h1 id="writing-title">Writing</h1>
+      </div>
+      <p>Mini projects from the exploration phase of Neel Nanda’s MATS 12 stream, October 2026.</p>
+    </header>
+    <ol class="project-list" role="list">
+      <li>
+        <a href="/writing/codenames-cot-token-ban/">
+          <span class="project-number">01</span>
+          <span class="project-copy">
+            <strong>Banning board words from a Codenames spymaster’s reasoning</strong>
+            <span>gpt-oss-120b respelled the banned words instead of dropping them, and the ban cost about two thirds of the gain from reasoning.</span>
+          </span>
+          <span class="project-tags">CoT · Monitoring</span>
+          <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+        </a>
+      </li>
+      <li>
+        <a href="/writing/inkling-reply-opener/">
+          <span class="project-number">02</span>
+          <span class="project-copy">
+            <strong>Inkling’s reply opener</strong>
+            <span>Forcing “I can assure you” after traces that plan to admit being an AI raised clean human claims from 9 to 132 of 300 replies.</span>
+          </span>
+          <span class="project-tags">Model forensics</span>
+          <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+        </a>
+      </li>
+      <li>
+        <a href="/writing/thought-branches-matched-control/">
+          <span class="project-number">03</span>
+          <span class="project-copy">
+            <strong>Thought Branches with a matched control</strong>
+            <span>Hint transplant curves jump at single sentences, and the late hint effect may come from how the released traces were selected.</span>
+          </span>
+          <span class="project-tags">CoT faithfulness</span>
+          <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+        </a>
+      </li>
+      <li>
+        <a href="/writing/eval-awareness-honeypot/">
+          <span class="project-number">04</span>
+          <span class="project-copy">
+            <strong>Gaming an evaluation without saying so</strong>
+            <span>No route produced runs to test silent gaming, but blocking talk of a detector undid much of a disguised copy.</span>
+          </span>
+          <span class="project-tags">Eval awareness</span>
+          <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+        </a>
+      </li>
+      <li>
+        <a href="/writing/self-recognition-label-effect/">
+          <span class="project-number">05</span>
+          <span class="project-copy">
+            <strong>Do AI judges recognise their own work?</strong>
+            <span>A “your own” label raised ratings of identical transcripts, while the true author made no detectable difference.</span>
+          </span>
+          <span class="project-tags">Monitoring</span>
+          <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
+        </a>
+      </li>
+    </ol>
+  </section>
+</main>
+<footer class="site-footer">
+          <div>
+            <p class="footer-kicker">AI systems · infrastructure · research</p>
+            <h2>Let’s build something fast.</h2>
+          </div>
+          <a class="footer-email" href="mailto:rsinha17@terpmail.umd.edu">
+            <span>rsinha17@terpmail.umd.edu</span>
+            <svg class="arrow" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-ne" />
+            </svg>
+          </a>
+          <div class="footer-bottom">
+            <p>© <span id="current-year">2026</span> Rishabh Sinha · Santa Clara, CA</p>
+            <nav aria-label="Profile links">
+              <a href="https://github.com/rishabhsinha17" rel="me noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/rishabhsinha17" rel="me noreferrer">LinkedIn</a>
+              <a href="mailto:rsinha17@terpmail.umd.edu">Email</a>
+            </nav>
+            <a class="back-to-top" href="#top">
+              Back to top
+              <svg class="arrow arrow-up" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up" />
+              </svg>
+            </a>
+          </div>
+        </footer>
+  </body>
+</html>

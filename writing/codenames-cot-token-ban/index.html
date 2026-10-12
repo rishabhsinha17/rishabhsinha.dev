@@ -1,93 +1,153 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<title>I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words. · Rishabh Sinha</title>
-<meta name="description" content="On 200 new Codenames boards, full reasoning improved the spymaster&#x27;s score from 1.29 to 2.00 team words per clue.">
-<link rel="canonical" href="https://rishabhsinha.dev/writing/codenames-cot-token-ban/">
-<meta property="og:title" content="I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words. · Rishabh Sinha">
-<meta property="og:description" content="On 200 new Codenames boards, full reasoning improved the spymaster&#x27;s score from 1.29 to 2.00 team words per clue.">
-<meta property="og:type" content="article"><meta property="og:url" content="https://rishabhsinha.dev/writing/codenames-cot-token-ban/">
-<style>
-:root{--bg:#fff;--fg:#1a1f2b;--mut:#5b6474;--line:#e3e7ee;--acc:#2a6fdb;--code:#f3f5f9;--quote:#f6f8fb}
-@media (prefers-color-scheme:dark){:root{--bg:#11151c;--fg:#e6e9ef;--mut:#9aa3b2;--line:#2a313d;--acc:#6ea0ff;--code:#1b212b;--quote:#161b23}}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;max-width:760px;margin:0 auto;padding:24px 16px 64px}
-a{color:var(--acc)}a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-nav{font-size:14px;color:var(--mut);margin-bottom:28px}nav a{text-decoration:none}nav a:hover{text-decoration:underline}
-h1{font-size:30px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
-.meta{color:var(--mut);font-size:14px;margin:0 0 28px}
-h2{font-size:22px;line-height:1.3;margin:40px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
-h3{font-size:18px;line-height:1.35;margin:28px 0 8px}
-p{margin:0 0 14px}ul,ol{padding-left:24px;margin:0 0 14px}li{margin:4px 0}
-code{background:var(--code);padding:1px 5px;border-radius:4px;font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-blockquote{margin:16px 0;padding:10px 16px;background:var(--quote);border-left:3px solid var(--line);border-radius:4px}
-blockquote p:last-child{margin-bottom:0}
-figure{margin:24px 0}figure img{display:block;width:100%;height:auto;border-radius:6px;background:#fff;border:1px solid var(--line)}
-figcaption{color:var(--mut);font-size:14.5px;line-height:1.5;margin-top:8px}
-.footnote{font-size:14.5px;color:var(--mut);margin-top:40px}.footnote hr{border:0;border-top:1px solid var(--line)}
-sup{line-height:0}
-.list article{padding:18px 0;border-bottom:1px solid var(--line)}.list h2{border:0;margin:0 0 6px;font-size:20px}
-.list h2 a{text-decoration:none}.list h2 a:hover{text-decoration:underline}.list p{color:var(--mut);margin:0}
-@media print{nav{display:none}body{max-width:none}}
-</style></head>
-<body><nav><a href="/">rishabhsinha.dev</a> · <a href="/writing/">Writing</a></nav>
-<h1>I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words.</h1>
-<p class="meta">Rishabh Sinha · <time datetime="2026-10-11">October 11, 2026</time></p>
-<h2>TL;DR</h2>
-<ul>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="On 200 new Codenames boards, full reasoning improved the spymaster&#x27;s score from 1.29 to 2.00 team words per clue." />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f0e9" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#171714" />
+    <meta property="og:title" content="I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words. · Rishabh Sinha" />
+    <meta property="og:description" content="On 200 new Codenames boards, full reasoning improved the spymaster&#x27;s score from 1.29 to 2.00 team words per clue." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://rishabhsinha.dev/writing/codenames-cot-token-ban/" />
+    <meta property="og:site_name" content="Rishabh Sinha" />
+    <meta property="og:image" content="https://rishabhsinha.dev/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words. · Rishabh Sinha</title>
+    <link rel="canonical" href="https://rishabhsinha.dev/writing/codenames-cot-token-ban/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/writing/writing.css" />
+    <script src="/script.js" defer></script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "I banned board-word tokens from gpt-oss-120b's reasoning. It respelled the words.", "description": "On 200 new Codenames boards, full reasoning improved the spymaster's score from 1.29 to 2.00 team words per clue.", "datePublished": "2026-10-11", "url": "https://rishabhsinha.dev/writing/codenames-cot-token-ban/", "author": {"@type": "Person", "name": "Rishabh Sinha", "url": "https://rishabhsinha.dev/"}}</script>
+  </head>
+  <body>
+    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-star" viewBox="0 0 16 16">
+        <path
+          d="M8 0c.6 4.4 3.6 7.4 8 8-4.4.6-7.4 3.6-8 8-.6-4.4-3.6-7.4-8-8 4.4-.6 7.4-3.6 8-8Z"
+          fill="currentColor"
+        />
+      </symbol>
+      <symbol id="i-contrast" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="6.4" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8 1.6a6.4 6.4 0 0 0 0 12.8Z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 16 16">
+        <circle cx="8" cy="8" r="3.1" fill="currentColor" />
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        >
+          <path d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8" />
+          <path d="m3 3 1.3 1.3M11.7 11.7 13 13M13 3l-1.3 1.3M4.3 11.7 3 13" />
+        </g>
+      </symbol>
+      <symbol id="i-arrow-ne" viewBox="0 0 16 16">
+        <path
+          d="M4.4 11.6 11.6 4.4M5.9 4.4h5.7v5.7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 16 16">
+        <path
+          d="M8 13.1V3.4M3.8 7.6 8 3.4l4.2 4.2"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+    </svg>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" id="top">
+  <a class="wordmark" href="/" aria-label="Rishabh Sinha, home">
+    <svg class="wordmark-mark" aria-hidden="true" focusable="false"><use href="#i-star" /></svg>
+    <span>rishabh sinha</span>
+  </a>
+  <div class="header-actions">
+    <a class="header-link" href="/writing/">Writing</a>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
+      <svg class="theme-icon theme-icon-light" aria-hidden="true" focusable="false"><use href="#i-contrast" /></svg>
+      <svg class="theme-icon theme-icon-dark" aria-hidden="true" focusable="false"><use href="#i-sun" /></svg>
+    </button>
+  </div>
+</header>
+<main id="main-content" class="post">
+  <article class="post-inner">
+    <header class="post-header">
+      <p class="eyebrow">Notes · MATS 12 · 01 / 05</p>
+      <h1 class="post-title">I banned board-word tokens from gpt-oss-120b&#x27;s reasoning. It respelled the words.</h1>
+      <p class="post-meta"><time datetime="2026-10-11">Oct 11, 2026</time><span>9 min read</span><span>CoT · Monitoring</span></p>
+    </header>
+    <aside class="tldr" aria-label="Summary">
+      <p class="tldr-label">TL;DR</p>
+      <ul>
 <li>On 200 new Codenames boards, full reasoning improved the spymaster's score from 1.29 to 2.00 team words per clue.</li>
 <li>Secretly banning board-word tokens cut the score by 0.48 [95% CI 0.29, 0.67] relative to a frequency-matched sham ban. That's roughly two thirds of the gain from reasoning. The sham alone had no measurable effect.</li>
 <li>The model kept mentioning board words, just in spellings the ban missed: <code>DECK</code>, "far m", "hor n", and sometimes translations. At the start of a respelling, an unbanned replay assigned the blocked word 0.39 probability on average.</li>
 <li>I couldn't make the words disappear. The experiment measures the cost of forcing alternative spellings; it doesn't establish whether the model needs to mention the words at all.</li>
 </ul>
-<p><em>Epistemic status: one open-weights model (gpt-oss-120b), playing both sides of Codenames on 200 boards. I pre-registered the main run, follow-up controls, and readout (documented by file times). I label other analyses post hoc or exploratory.</em></p>
+    </aside>
+    <div class="prose">
+
+<p class="note">Epistemic status: one open-weights model (gpt-oss-120b), playing both sides of Codenames on 200 boards. I pre-registered the main run, follow-up controls, and readout (documented by file times). I label other analyses post hoc or exploratory.</p>
 <p>Neel's MATS 12 project list asks, "How far can you push elicitation of CoT controllability?" I tried making a Codenames spymaster reason without writing the words on its board. It has to check which of 25 words fit a clue and which might send the guesser to the wrong card. Writing them down seems useful. If the model can get around a token restriction by writing the same words differently, how much does the restriction actually tell us about its reasoning?</p>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Each board has 25 words, nine belonging to the spymaster's team. The spymaster sees the team assignments and gives a one-word clue plus a number. The guesser sees the words but not their assignments and selects up to that many cards. I scored a clue by the number of team words picked before the first wrong guess, averaged over three guesser samples.</p>
 <p>gpt-oss-120b played both roles at medium reasoning effort. The guesser always started in a fresh context and had no ban. I reused the same 200 boards for every main condition.</p>
 <p>With <em>reasoning off</em>, the spymaster starts directly in its answer. Comparing it with <em>full reasoning</em> estimates how much the reasoning helps.</p>
 <p>For the <em>token ban</em>, I silently applied a logit bias of -100 to every single-token form of each of the 25 board words and their plurals.</p>
 <p>The <em>sham ban</em> applied the same bias to unrelated tokens, mostly hedges and function words such as "maybe", "the", and "think". I picked tokens that appeared about as often in ordinary reasoning as the board-word tokens. This was a follow-up control: my original pre-registered sham turned out to ban tokens used 59 times less often.</p>
 <p>This was a mini project in the exploration phase of Neel Nanda's MATS 12 stream (October 2026). Claude Code agents ran the experiments under my direction. Independent verifier agents recomputed the main-run and readout numbers; the follow-up controls underlying the 0.48 estimate were checked through a second code path only.</p>
-<h2>Results</h2>
-<h3>Losing the usual spelling cost about two thirds of the reasoning gain</h3>
+<h2 id="results">Results</h2>
+<h3 id="losing-the-usual-spelling-cost-about-two-thirds-of-the-reasoning-gain">Losing the usual spelling cost about two thirds of the reasoning gain</h3>
 <p>Full reasoning scored 2.00 team words per clue, versus 1.29 with reasoning off. The +0.71 gain [95% CI 0.51, 0.91] passed my first pre-registered check.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <p>The board-word ban scored 0.48 [0.29, 0.67] below the matched sham. That's roughly two thirds of the 0.71 gain from reasoning (ratio 0.68 [0.40, 1.04]). The sham on its own changed the score by -0.09, with an interval spanning zero.</p>
 <p>This passed a threshold I pre-registered under the name "needed": a drop at least half as large as the reasoning gain, with an interval excluding zero.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> In hindsight, "needed" is too strong a name for that threshold. The model still wrote board words in every banned trace. What I measured was the cost of disrupting their usual spelling; I never established that writing them was necessary.</p>
-<figure><img alt="Scores by condition" src="images/p5_fig1_score.png" loading="lazy"><figcaption>Figure 1. Banning board-word tokens reduces the score relative to a frequency-matched sham. The sham ban and instruction-only condition have no measurable effect. Error bars show 95% confidence intervals.</figcaption></figure>
-<h3>The words showed up in different spellings</h3>
+<figure><img alt="Scores by condition" src="images/p5_fig1_score.png" loading="lazy" decoding="async"><figcaption>Figure 1. Banning board-word tokens reduces the score relative to a frequency-matched sham. The sham ban and instruction-only condition have no measurable effect. Error bars show 95% confidence intervals.</figcaption></figure>
+<h3 id="the-words-showed-up-in-different-spellings">The words showed up in different spellings</h3>
 <p>I counted a <em>respelling</em> whenever the model wrote a board word without using its banned token: capitals, split words, translations, and similar workarounds. With the ban active, the ordinary spelling after a space accounted for only 0.4% of board-word mentions. Roughly two thirds were respelled. Most of the remainder attached the ordinary spelling to a quotation mark, producing a tokenization the ban didn't cover.</p>
 <p>Every one of the 200 banned traces still mentioned a board word. Seventeen traces translated at least one into Chinese, and one used Korean. For example, the model wrote 桥 for "bridge".</p>
-<h3>What the model was about to write</h3>
+<h3 id="what-the-model-was-about-to-write">What the model was about to write</h3>
 <p>I replayed the 200 banned traces through the unbanned model ($1.09 on one H100) and measured the next-token distribution where each respelling began. A logit bias lowers the scores of the specified tokens, so the unbanned replay lets us inspect the distribution before that intervention.</p>
 <p>Averaging within each trace and then across traces, the blocked board word had probability 0.39 [0.36, 0.43] at the start of a respelling (0.29 when positions were pooled). Other board words had 109 [93, 130] times less probability each. This met the pre-registered comparison.</p>
-<figure><img alt="Spellings and readout" src="images/p5_fig2_words_still_there.png" loading="lazy"><figcaption>Figure 2. Left: the token ban nearly eliminates ordinary spellings after a space, but the model keeps using alternative forms. Right: at respelling starts, the unbanned model assigns 0.39 probability on average to the blocked word, 109 times the average for other board words.</figcaption></figure>
+<figure><img alt="Spellings and readout" src="images/p5_fig2_words_still_there.png" loading="lazy" decoding="async"><figcaption>Figure 2. Left: the token ban nearly eliminates ordinary spellings after a space, but the model keeps using alternative forms. Right: at respelling starts, the unbanned model assigns 0.39 probability on average to the blocked word, 109 times the average for other board words.</figcaption></figure>
 <p>For a spot check, I randomly selected the first respelling from 10 banned traces, using seed 7. Board 182 was one of them. This is the trace just before the first respelling:</p>
-<p><em>gpt-oss-120b, medium reasoning effort, playing Codenames spymaster. The board-word tokens are silently banned.</em></p>
+<p class="note">gpt-oss-120b, medium reasoning effort, playing Codenames spymaster. The board-word tokens are silently banned.</p>
 <blockquote>
 <p>...without hitting blue or neutral or assassin.</p>
 <p>Red words: "hor n</p>
 </blockquote>
 <p>At that position, the unbanned model's next token is "horn" with probability 1.00. The blocked word was the unbanned model's top token in nine of the ten sampled cases.</p>
 <p>The across-trace pattern is similar, though this part is exploratory (Figure 3). The first respelling has probability 0.96, compared with 0.98 for the first mention without a ban. Later respellings get lower probabilities, largely because the model has already established an alternative spelling. If I count the first token it actually writes, the chance of starting the word is 0.84 under the ban versus 0.85 without it (post hoc). Layer-by-layer logit-lens readouts point in the same direction, less decisively.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
-<figure><img alt="Readout across the trace" src="images/fig3_readout_across_trace.png" loading="lazy"><figcaption>Figure 3. Across successive respellings, probability assigned to the banned spelling falls (blue). Including the token actually written (orange; verifier estimates) tracks the unbanned run more closely (dashed). This analysis is exploratory.</figcaption></figure>
-<h3>Attempts to keep the words out failed</h3>
+<figure><img alt="Readout across the trace" src="images/fig3_readout_across_trace.png" loading="lazy" decoding="async"><figcaption>Figure 3. Across successive respellings, probability assigned to the banned spelling falls (blue). Including the token actually written (orange; verifier estimates) tracks the unbanned run more closely (dashed). This analysis is exploratory.</figcaption></figure>
+<h3 id="attempts-to-keep-the-words-out-failed">Attempts to keep the words out failed</h3>
 <p>An instruction to avoid board words in reasoning worked on 0 of 200 traces. The score barely changed (+0.02).</p>
 <p>I also tried a <em>string-level ban</em>. Whenever a 64-token chunk contained a board word, I resampled it, banning the offending spelling's first token after three failures and accepting the chunk after six. This scored 1.00, worse than reasoning off (1.29), and at least 111 of the 200 traces still mentioned a board word. A control with the additional token bans but without resampling scored 1.66. The resampling procedure accounted for the extra loss.</p>
 <p>Increasing reasoning effort didn't help. In a pre-registered high-effort check, 41 of 50 traces ran into the 16,000-token cap, and the score was 0.73 below reasoning off.</p>
-<h2>What these results don't show</h2>
+<h2 id="what-these-results-dont-show">What these results don't show</h2>
 <p>I never found a setting that kept the board words out while leaving the model a usable board. Every attempted restriction leaked. In the few traces from other variants with no board-word mention, the model had lost the board list. This leaves the central question unanswered: could the spymaster reason just as well without ever mentioning a board word? The 0.48 drop may partly be a penalty for awkward respellings, which board words force and sham words don't.</p>
 <p>The readout also has numerical uncertainty beyond the reported intervals. Two equivalent computations differed by up to 0.80 to 1.18 nats at the worst single positions, for reasons I haven't measured, although they matched the served model on average. The main blocked-word probability clears its pre-registered threshold by a wide margin; the logit-lens check is much closer to its threshold. And looking only at written respellings cannot reveal words the model omitted altogether.</p>
 <p>I detected respellings with a string-matching script. Translation counts came from a script and one AI reading. All spymaster runs used Crusoe, because DeepInfra silently ignored the logit bias. The string-level and follow-up conditions were run later than the main conditions; the string-level condition came about seven hours afterward. A concurrent 50-board rerun of full reasoning measured drift at +0.16, with a wide interval.</p>
 <p>There were two mistakes in my process. The filler-token version dropped out of the pre-registration with no recorded reason, so it never ran. I also ran the full string-level ban after its 20-board pilot failed my own criterion: 10 of 20 traces had already reached the six-failure limit.</p>
-<h2>Related work</h2>
+<h2 id="related-work">Related work</h2>
 <p><a href="https://arxiv.org/abs/2603.05706">CoT-Control</a> (Chen Yueh-Han et al., 2026) asks reasoning models to avoid specified words in their reasoning. Claude Sonnet 4.5 complied in 2.7% of reasoning traces, compared with 61.9% for its final output. My instruction-only condition agrees with that result, but Arun Jose <a href="https://blog.redwoodresearch.org/p/cot-controllability-evals-seem-very">argues</a> that the elicitation in these evaluations is too weak. One instruction from me doesn't settle that criticism.</p>
 <p>Penalizing strings during reasoning with RL can produce substitutes that generalize to held-out strings (<a href="https://arxiv.org/abs/2506.01926">Skaf et al. 2025</a>). My model found alternative spellings without training. Training against a chain-of-thought monitor has also produced obfuscated reward hacking (<a href="https://arxiv.org/abs/2503.11926">Baker et al. 2025</a>). Models have difficulty evading monitors on tasks where they need their reasoning (<a href="https://arxiv.org/abs/2507.05246">Emmons et al. 2025</a>), and can read non-canonical tokenizations nearly as well as canonical ones (<a href="https://arxiv.org/abs/2506.19004">Zheng et al. 2025</a>).</p>
 <p>I did a limited novelty search: eight arXiv keyword searches, none on LessWrong or the Alignment Forum. I didn't find the matched-sham comparison, the untrained workarounds, or this readout. Robbie Thompson has independently built a Codenames CoT-control harness, unpublished but shared in our MATS stream. I haven't compared our harnesses and don't claim priority over his.</p>
-<h2>Next experiments</h2>
+<h2 id="next-experiments">Next experiments</h2>
 <p>I want to try filler tokens, following Ryan Greenblatt's <a href="https://blog.redwoodresearch.org/p/recent-llms-can-use-filler-tokens">results</a>, and stronger ways of asking the model to avoid the words: a developer-message rule, instructions to use board positions, and worked examples. A backtracking string-level ban with a proper control is the next test of whether the spymaster can reason without writing board words.</p>
 <p>I'd keep the unbanned replay in future experiments. It told me what the model was about to write at the exact point where the token ban forced a workaround. In this run, that was informative even though I never got the words out. Total API and GPU cost: $7.44.</p>
-<h2>Acknowledgments</h2>
+<h2 id="acknowledgments">Acknowledgments</h2>
 <p>Thanks to Neel Nanda, whose MATS 12 project list posed the question.</p>
 <p>Code and data are available on request.</p>
 <div class="footnote">
@@ -104,4 +164,35 @@ sup{line-height:0}
 </li>
 </ol>
 </div>
-</body></html>
+    </div>
+    <nav class="post-pager" aria-label="More writing"><a class="next" href="/writing/inkling-reply-opener/"><span class="label">Next</span><span class="title">Inkling’s reply opener</span></a></nav>
+  </article>
+</main>
+<footer class="site-footer">
+          <div>
+            <p class="footer-kicker">AI systems · infrastructure · research</p>
+            <h2>Let’s build something fast.</h2>
+          </div>
+          <a class="footer-email" href="mailto:rsinha17@terpmail.umd.edu">
+            <span>rsinha17@terpmail.umd.edu</span>
+            <svg class="arrow" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-ne" />
+            </svg>
+          </a>
+          <div class="footer-bottom">
+            <p>© <span id="current-year">2026</span> Rishabh Sinha · Santa Clara, CA</p>
+            <nav aria-label="Profile links">
+              <a href="https://github.com/rishabhsinha17" rel="me noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/rishabhsinha17" rel="me noreferrer">LinkedIn</a>
+              <a href="mailto:rsinha17@terpmail.umd.edu">Email</a>
+            </nav>
+            <a class="back-to-top" href="#top">
+              Back to top
+              <svg class="arrow arrow-up" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up" />
+              </svg>
+            </a>
+          </div>
+        </footer>
+  </body>
+</html>
