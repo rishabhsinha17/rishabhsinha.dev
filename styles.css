@@ -1036,7 +1036,7 @@ html[data-theme="dark"] .theme-icon-dark {
 
   .section-nav {
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(7, auto);
     max-width: none;
     margin: auto 0 1.5rem;
     border-bottom: 1px solid var(--rule);
