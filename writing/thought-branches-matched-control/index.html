@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Thought Branches&#x27; transplant curves jump, but the matched control complicates the story · Rishabh Sinha</title>
+<meta name="description" content="I reran Thought Branches&#x27; hint-transplant experiment on its released model and data, adding a control: no-hint chains of thought (CoTs) that reached the same wrong answer.">
+<link rel="canonical" href="https://rishabhsinha.dev/writing/thought-branches-matched-control/">
+<meta property="og:title" content="Thought Branches&#x27; transplant curves jump, but the matched control complicates the story · Rishabh Sinha">
+<meta property="og:description" content="I reran Thought Branches&#x27; hint-transplant experiment on its released model and data, adding a control: no-hint chains of thought (CoTs) that reached the same wrong answer.">
+<meta property="og:type" content="article"><meta property="og:url" content="https://rishabhsinha.dev/writing/thought-branches-matched-control/">
+<style>
+:root{--bg:#fff;--fg:#1a1f2b;--mut:#5b6474;--line:#e3e7ee;--acc:#2a6fdb;--code:#f3f5f9;--quote:#f6f8fb}
+@media (prefers-color-scheme:dark){:root{--bg:#11151c;--fg:#e6e9ef;--mut:#9aa3b2;--line:#2a313d;--acc:#6ea0ff;--code:#1b212b;--quote:#161b23}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;max-width:760px;margin:0 auto;padding:24px 16px 64px}
+a{color:var(--acc)}a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+nav{font-size:14px;color:var(--mut);margin-bottom:28px}nav a{text-decoration:none}nav a:hover{text-decoration:underline}
+h1{font-size:30px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.meta{color:var(--mut);font-size:14px;margin:0 0 28px}
+h2{font-size:22px;line-height:1.3;margin:40px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;line-height:1.35;margin:28px 0 8px}
+p{margin:0 0 14px}ul,ol{padding-left:24px;margin:0 0 14px}li{margin:4px 0}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+blockquote{margin:16px 0;padding:10px 16px;background:var(--quote);border-left:3px solid var(--line);border-radius:4px}
+blockquote p:last-child{margin-bottom:0}
+figure{margin:24px 0}figure img{display:block;width:100%;height:auto;border-radius:6px;background:#fff;border:1px solid var(--line)}
+figcaption{color:var(--mut);font-size:14.5px;line-height:1.5;margin-top:8px}
+.footnote{font-size:14.5px;color:var(--mut);margin-top:40px}.footnote hr{border:0;border-top:1px solid var(--line)}
+sup{line-height:0}
+.list article{padding:18px 0;border-bottom:1px solid var(--line)}.list h2{border:0;margin:0 0 6px;font-size:20px}
+.list h2 a{text-decoration:none}.list h2 a:hover{text-decoration:underline}.list p{color:var(--mut);margin:0}
+@media print{nav{display:none}body{max-width:none}}
+</style></head>
+<body><nav><a href="/">rishabhsinha.dev</a> · <a href="/writing/">Writing</a></nav>
+<h1>Thought Branches&#x27; transplant curves jump, but the matched control complicates the story</h1>
+<p class="meta">Rishabh Sinha · <time datetime="2026-10-11">October 11, 2026</time></p>
+<h2>TL;DR</h2>
+<ul>
+<li>I reran <a href="https://arxiv.org/abs/2510.27484">Thought Branches</a>' hint-transplant experiment on its released model and data, adding a control: no-hint chains of thought (CoTs) that reached the <em>same wrong answer</em>. My pre-registered decision rule called the result <strong>inconclusive</strong>.</li>
+<li>Hinted and control prefixes pulled continuations toward that answer about equally through 40% of the CoT. Hinted prefixes pulled harder later, but the comparison may be biased by how the released traces were selected.</li>
+<li>Most of the released curves get much of their rise from a single sentence. Fresh samples reproduce the jumps, and deleting those sentences reduces the pull. I can't yet show that the jumps are <em>caused by the hint</em>.</li>
+<li>In a one-pass forced-answer readout, the prompt itself supplies most of the hint's bias. The bias gets smaller, not bigger, across the jump sentence.</li>
+</ul>
+<p><em>Epistemic status: one model, one kind of hint, and 38 questions selected by the Thought Branches release. I pre-registered the matched-control test and forced-answer readout; selection analyses and deletion tests are post hoc or exploratory.</em></p>
+<p><em>This mini project was part of the exploration phase of Neel Nanda's MATS 12 stream (October 2026). It builds on <a href="https://arxiv.org/abs/2510.27484">Thought Branches</a> by Uzay Macar, Paul Bogdan, Senthooran Rajamanoharan, and Neel Nanda. Claude Code agents ran the experiments under my direction; independent verifier agents recomputed the main numbers from saved data.</em></p>
+<p>Thought Branches (TB) studies how a misleading hint can steer a model even when its written reasoning never mentions that hint. The authors describe the pull as building up "usually gradually rather than spiking upward at any one sentence". I wondered whether a few sentences actually do most of the steering.</p>
+<p>But there's a simpler issue to settle first. If I paste part of <em>any</em> reasoning trace that ends on answer B into a fresh continuation, it may pull the model toward B. How much of TB's curve is specific to the <em>hint</em>, rather than to a trace that already heads toward that answer? I tried to measure both that difference and where the pull concentrates.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<h2>Setup</h2>
+<p>I used TB's DeepSeek-R1-Distill-Qwen-14B and its 38 released hinted CoTs, one per MMLU question. Each question had a misleading hint from <a href="https://arxiv.org/abs/2501.08156">Chua and Evans</a>: a Stanford professor with an IQ of 130 supposedly answered option X, which is wrong. All 38 released hinted CoTs end on X without acknowledging the hint.</p>
+<p>TB's transplant experiment places increasingly long prefixes of each hinted CoT after the question, <em>without the hint</em>, and samples 50 continuations at each point. It asks how often the continuation gives X. A rising curve means the prefix increasingly predicts that answer, but doesn't by itself identify why.</p>
+<p>My control is TB's released no-hint trace for the same question, generated by the same model and also ending on X. I subtracted the control's X-answer rate from the hinted trace's rate at 20%, 40%, 60%, and 80% of each CoT, then averaged over questions.</p>
+<p>Before collecting the data, I fixed a decision rule: call the effect <em>present</em> if the 60% gap is at least +0.10 and its confidence interval excludes zero; call it <em>absent</em> if every cut is below +0.10; otherwise say <em>inconclusive</em>. The run followed TB's prompts and sampling and cost $1.99 on an A100.</p>
+<p>I also tested whether the curves rise in steps. This was post hoc: I compared the largest one-sentence jump in each curve to a null where the same total change is spread evenly in log-odds, with 50-sample noise added. I resampled 30 fresh continuations immediately before and after each largest jump.</p>
+<p>Finally, in a pre-registered forced-answer readout inspired by <a href="https://arxiv.org/abs/2307.13702">Lanham et al.</a>, I appended TB's answer prompt after each sentence and used a single forward pass to read the probabilities of A through D. I measured the shift toward the hinted letter relative to the correct one in log-odds (nats). A placebo hint pointed to a different, third option.</p>
+<h2>Results</h2>
+<h3>The matched control keeps pace until late in the trace</h3>
+<figure><img alt="Rates of the hinted answer by cut point for hinted prefixes, matched controls and correct-answer prefixes, with TB's released rates as squares" src="images/fig2a_three_arms.png" loading="lazy"><figcaption>Figure 1. Hinted prefixes (blue) and same-answer controls (orange) track each other through the 40% cut. Squares are TB's original rates.</figcaption></figure>
+<p>My hinted-prefix rates closely match TB's released rates (r = 0.981). So this is the original experiment with an additional comparison, not a different implementation of the effect.</p>
+<figure><img alt="Hinted minus control at each cut point for all 38 questions, the two convergence subsets and DeepSeek V4 Flash" src="images/fig2b_control_delta.png" loading="lazy"><figcaption>Figure 2. Hinted-minus-control differences at each cut. Green identifies the ten questions whose controls never lock on to the wrong answer.</figcaption></figure>
+<p>At 20% and 40%, the gap is close to zero. At 60%, hinted prefixes beat controls by +0.088 [95% CI +0.018, +0.159]; at 80%, by +0.136 [+0.030, +0.232]. That is a real-looking late difference, but the 60% estimate misses my pre-registered +0.10 threshold. The 80% estimate exceeds it. Under the rule I chose beforehand, <strong>the result is inconclusive</strong>, not evidence that the hint's pull has been isolated.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<h3>The way TB selected traces could create the late gap</h3>
+<p>TB's <em>current</em> code retains a hinted CoT only if some prefix is strongly locked on to the hinted answer: at least 49 of 50 continuations give X. The figures use the term <em>converging</em>. All 38 released traces qualify. Of the 71 questions in TB's eligible-problem file, 22 are missing from the release, for reasons I can't determine from the released files.</p>
+<p>My no-hint controls weren't selected with the same rule. That matters most late in the curve, when the hinted side is guaranteed to have become strongly predictive at some point but the control side is not. It could generate a positive gap even if the hint added nothing at that point. At their respective last prefixes, 37 of 38 hinted traces are locked on, compared with 28 of 38 controls.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+<p>For the 28 questions whose controls <em>do</em> lock on (a post hoc subgroup), the gap falls to +0.063 at 60% and +0.035 at 80%; both intervals include zero. Under my numerical rule this subgroup reads "absent". The other ten account for most of the late difference.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> That doesn't prove selection explains the whole effect, but it makes the unfiltered late gap a poor estimate of hint-specific influence.</p>
+<h3>Much of the rise happens at one sentence</h3>
+<figure><img alt="Line chart of one randomly drawn hinted CoT: TB's released curve, the equal-step null, the forced-answer readout and fresh samples around the jump sentence" src="images/fig1a_example_curve.png" loading="lazy"><figcaption>Figure 3. One randomly drawn curve. The original transplant curve (blue), new samples (black), and readout (green) all change sharply at sentence 9; the equal-step null (orange) does not.</figcaption></figure>
+<p>Consider problem 804, drawn at random. For eight sentences its hinted-answer rate moves between 0.24 and 0.74. At sentence 9 it jumps from 0.58 to 0.86. Here is that sentence, verbatim, from TB's released CoT for the MMLU question "The Voting Rights Act of 1965", where (B) is hinted and (D) is correct:</p>
+<blockquote>
+<p>"B) Banned race-based discrimination: This sounds plausible because the Act was designed to eliminate racial discrimination in voting."</p>
+</blockquote>
+<p>The sentence starts by writing the hinted option, and this question's control belongs to the ten that never lock on. One attractive example isn't a distribution, though.</p>
+<figure><img alt="Sorted dot plot of the largest one-sentence step as a share of the total rise, for TB's 38 released curves" src="images/fig1b_step_share.png" loading="lazy"><figcaption>Figure 4. Each dot is one released curve. Filled dots reject a constant-step null at p &lt; 0.05.</figcaption></figure>
+<p>Across all 38 curves, <strong>28 have a largest jump that exceeds the equal-step null</strong>, or 26–28 with stricter checks.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> For the median curve, the biggest sentence accounts for 0.57 [0.41, 0.73] of the total rise, compared with about 0.29 under the null. That's much less gradual than the description led me to expect, but it still isn't proof those jumps were introduced by the hint.</p>
+<h3>The jumps survive resampling, and deletion weakens them</h3>
+<figure><img alt="Scatter of TB's released step against the step on fresh samples, beside the hinted-answer share after deleting one sentence" src="images/fig3ab_jump_sentence.png" loading="lazy"><figcaption>Figure 5. Left: TB's original jump versus fresh samples, with the example circled. Right: the hinted-answer rate after deleting a sentence.</figcaption></figure>
+<p>Fresh continuations show a +0.369 [+0.283, +0.457] step at the jump sentence, close to TB's original +0.411. The jump isn't just an artifact of replotting the released 50 samples.</p>
+<p>I then deleted the jump sentence from the 80% prefix (exploratory). The hinted-answer rate dropped from 0.916 to 0.767. Removing a different, similarly long sentence left it at 0.910: a +0.142 difference, with a confidence interval above zero. But I didn't do the parallel deletion on the matched control. So the result tells me the sentence matters within the hinted trace, <strong>not</strong> that it uniquely carries the hint.</p>
+<h3>The forced-answer readout starts with a large bias and loses some of it</h3>
+<figure><img alt="Forced-answer shift toward the hinted letter, in nats, at the start of the CoT and around the jump sentence, for the hint, a placebo hint and the CoT-only route" src="images/fig3c_forced_readout.png" loading="lazy"><figcaption>Figure 6. The prompt's hint produces a large initial shift (blue), which gets smaller across the jump. The placebo (grey) and CoT-only route (orange) are much smaller.</figcaption></figure>
+<p>The readout's biggest step lands on TB's jump sentence in 11 of 38 traces, more often than the pre-registered chance baselines predict.<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup> Yet before <em>any</em> reasoning text, the hint already shifts the forced answer toward X by +3.372 nats [+2.948, +3.785]. Across the jump sentence that effect falls by about 0.9 nats (confidence interval above zero), in 32 of 38 traces. The placebo hint doesn't shift X in the same way.</p>
+<p>In another, exploratory setup, only CoT tokens could carry information from the hint line. Almost none of its effect reached the forced answer until the text mentioned the hinted letter. After that it contributed about +0.155 nats, roughly 5–7% of the total (post hoc). The picture is therefore more awkward than "the hint accumulates sentence by sentence": the prompt starts with a large bias, while a few individual sentences produce sharp changes in answer behaviour.</p>
+<h2>What this doesn't settle</h2>
+<p>The matched control doesn't tell me whether the hint has a small, diffuse influence all the way through. A nudge that simply resembles an ordinary move toward X could leave a small hinted-minus-control gap. Nor have I matched the controls on TB's convergence filter, which is exactly what the late result needs.</p>
+<p>Control prefixes were 8–26% longer than hinted prefixes, although length did not predict the measured gap.<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> The forced-answer readout observes the output distribution in one pass; it isn't a direct reading of the intervening computation. At intermediate layers, logit-lens results tracked TB's curve only from layer 35 of 48. None of the main numerical claims relies on labels from an AI model.</p>
+<h2>The follow-up I'd actually run</h2>
+<p>I'd sample five to ten no-hint traces per question that reach X, keep only those whose transplant curves lock on under the <em>same</em> filter as the hinted traces, and then rerun the paired comparison. I'd also remove each matched control's own biggest-jump sentence. This should cost roughly $5–$10 on an A100 and would directly address the selection problem rather than adding another exploratory readout.</p>
+<h2>Acknowledgments</h2>
+<p>Thanks to the Thought Branches authors for releasing the data and code, to James Chua and Owain Evans for the hint prompts, and to Neel Nanda for the question.</p>
+<p>Code and data are available on request.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Related work includes <a href="https://arxiv.org/abs/2305.04388">Turpin et al.</a>, <a href="https://arxiv.org/abs/2505.05410">Chen et al.</a> and <a href="https://arxiv.org/abs/2506.19143">Thought Anchors</a>. I searched only briefly: two web and two arXiv abstract searches on Oct 6 and 7, plus TB's paper and code. Within that search, the step test, the matched control on TB's model, the selection effect and the one-pass readout look new.&#160;<a class="footnote-backref" href="#fnref:1" title="Back to text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Through 40%, the gap is -0.008 [-0.055, +0.041] at 20% and -0.027 [-0.108, +0.053] at 40%. All five independent 10-sample blocks give the same verdict, as does every leave-one-question-out run. Holm-correcting over the four cuts gives a 60% p-value of 0.057 (post hoc).&#160;<a class="footnote-backref" href="#fnref:2" title="Back to text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Here, a CoT has locked on if at least 19 of 20 continuations from its last prefix give the hinted answer.&#160;<a class="footnote-backref" href="#fnref:3" title="Back to text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>For those 28, the CIs are [-0.018, +0.149] at 60% and [-0.075, +0.132] at 80%. Meanwhile, the other 10 give +0.159 and +0.420, and account for 0.81 of the summed excess at 80%.&#160;<a class="footnote-backref" href="#fnref:4" title="Back to text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>The example's jump alone gives p = 0.066. By chance alone, about 1.9 of the 38 curves would reject at p &lt; 0.05. Two re-checks that mimic TB's lock-on filter give 26 to 28 of 38, and even a null with random step sizes rejects in 19 of 38.&#160;<a class="footnote-backref" href="#fnref:5" title="Back to text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Chance would give 2.1 and 3.0 matches under the two pre-registered nulls (p ≤ 0.0003).&#160;<a class="footnote-backref" href="#fnref:6" title="Back to text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Length and the gap correlate at r from -0.133 to +0.096.&#160;<a class="footnote-backref" href="#fnref:7" title="Back to text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</body></html>
