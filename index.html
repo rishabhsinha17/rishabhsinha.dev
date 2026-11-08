@@ -1,718 +1,457 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta
-      name="description"
-      content="Rishabh Sinha is a software engineer building low-latency AI infrastructure, distributed systems, and reliable agentic systems."
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#f2f0e9"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#171714"
-    />
-    <meta property="og:title" content="Rishabh Sinha — Software Engineer" />
-    <meta
-      property="og:description"
-      content="Low-latency AI infrastructure, distributed systems, and reliable agentic systems."
-    />
-    <meta property="og:type" content="profile" />
-    <meta property="og:url" content="https://rishabhsinha.dev/" />
-    <meta property="og:site_name" content="Rishabh Sinha" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="https://rishabhsinha.dev/og-image.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Rishabh Sinha — software engineer, ML systems. I build AI systems that move."
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://rishabhsinha.dev/og-image.png" />
-    <title>Rishabh Sinha — Software Engineer</title>
-    <link rel="canonical" href="https://rishabhsinha.dev/" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="stylesheet" href="styles.css" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "url": "https://rishabhsinha.dev/",
-        "dateModified": "2026-08-04",
-        "mainEntity": {
-          "@type": "Person",
-          "name": "Rishabh Sinha",
-          "jobTitle": "Software Engineer",
-          "email": "mailto:rsinha17@terpmail.umd.edu",
-          "homeLocation": {
-            "@type": "Place",
-            "name": "Santa Clara, California"
-          },
-          "alumniOf": [
-            {
-              "@type": "CollegeOrUniversity",
-              "name": "University of California, Berkeley"
-            },
-            {
-              "@type": "CollegeOrUniversity",
-              "name": "University of Maryland, College Park"
-            }
-          ],
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Google",
-            "url": "https://about.google/"
-          },
-          "knowsAbout": [
-            "Machine learning systems",
-            "Low-latency inference",
-            "Distributed systems",
-            "AI agents",
-            "High-performance computing"
-          ],
-          "sameAs": [
-            "https://github.com/rishabhsinha17",
-            "https://www.linkedin.com/in/rishabhsinha17",
-            "https://scholar.google.com/citations?user=xKEmxtwAAAAJ"
-          ]
-        }
-      }
-    </script>
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <!--
-      Icon sprite. Every decorative mark on the page is drawn from these symbols
-      rather than a Unicode glyph, so the shapes are identical on every OS
-      instead of falling back to Apple Symbols / Segoe UI Symbol / Noto per platform.
-    -->
-    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <symbol id="i-star" viewBox="0 0 16 16">
-        <path
-          d="M8 0c.6 4.4 3.6 7.4 8 8-4.4.6-7.4 3.6-8 8-.6-4.4-3.6-7.4-8-8 4.4-.6 7.4-3.6 8-8Z"
-          fill="currentColor"
-        />
-      </symbol>
-      <symbol id="i-contrast" viewBox="0 0 16 16">
-        <circle cx="8" cy="8" r="6.4" fill="none" stroke="currentColor" stroke-width="1.5" />
-        <path d="M8 1.6a6.4 6.4 0 0 0 0 12.8Z" fill="currentColor" />
-      </symbol>
-      <symbol id="i-sun" viewBox="0 0 16 16">
-        <circle cx="8" cy="8" r="3.1" fill="currentColor" />
-        <g
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-        >
-          <path d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8" />
-          <path d="m3 3 1.3 1.3M11.7 11.7 13 13M13 3l-1.3 1.3M4.3 11.7 3 13" />
-        </g>
-      </symbol>
-      <symbol id="i-arrow-ne" viewBox="0 0 16 16">
-        <path
-          d="M4.4 11.6 11.6 4.4M5.9 4.4h5.7v5.7"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </symbol>
-      <symbol id="i-arrow-up" viewBox="0 0 16 16">
-        <path
-          d="M8 13.1V3.4M3.8 7.6 8 3.4l4.2 4.2"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </symbol>
-    </svg>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Rishabh Sinha</title>
+<meta name="description" content="Rishabh Sinha, software engineer at Google working on Gemini serving. Collaborator and core contributor on kvcached; research on monitoring tool-using agents.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141414">
+<meta property="og:title" content="Rishabh Sinha">
+<meta property="og:description" content="Software engineer at Google on Gemini serving. Collaborator and core contributor on kvcached. Agents in the Wild @ NeurIPS 2026.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://rishabhsinha.dev/">
+<meta property="og:site_name" content="Rishabh Sinha">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rishabhsinha.dev/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rishabh Sinha, software engineer at Google on Gemini serving.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rishabhsinha.dev/og-image.png">
+<link rel="canonical" href="https://rishabhsinha.dev/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://rishabhsinha.dev/",
+  "dateModified": "2026-11-07",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Rishabh Sinha",
+    "jobTitle": "Software Engineer",
+    "email": "mailto:rsinha17@terpmail.umd.edu",
+    "homeLocation": { "@type": "Place", "name": "Santa Clara, California" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University of California, Berkeley" },
+      { "@type": "CollegeOrUniversity", "name": "University of Maryland, College Park" }
+    ],
+    "worksFor": { "@type": "Organization", "name": "Google", "url": "https://about.google/" },
+    "knowsAbout": ["LLM inference", "KV-cache systems", "Machine learning systems", "AI agents"],
+    "sameAs": [
+      "https://github.com/rishabhsinha17",
+      "https://www.linkedin.com/in/rishabhsinha17",
+      "https://scholar.google.com/citations?user=xKEmxtwAAAAJ"
+    ]
+  }
+}
+</script>
+<style>
+:root {
+  --bg: #ffffff;
+  --ink: #1b1b1b;
+  --meta: #666666;
+  --link: #1f5fbf;
+  --link-hover: #154a99;
+  --hl: #fff7d1;
+  --rule: #e6e6e6;
+  --focus: #1f5fbf;
 
-    <a class="skip-link" href="#main-content">Skip to content</a>
+  --serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", "Source Sans Pro", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 2.25rem;
+  --left: 5.5rem;
+  --gap: 1.25rem;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141414;
+    --ink: #e8e6e3;
+    --meta: #a3a3a3;
+    --link: #8cb4ff;
+    --link-hover: #b3ceff;
+    --hl: #2b2716;
+    --rule: #2c2c2c;
+    --focus: #8cb4ff;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141414;
+  --ink: #e8e6e3;
+  --meta: #a3a3a3;
+  --link: #8cb4ff;
+  --link-hover: #b3ceff;
+  --hl: #2b2716;
+  --rule: #2c2c2c;
+  --focus: #8cb4ff;
+}
 
-    <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="Rishabh Sinha, back to top">
-        <svg class="wordmark-mark" aria-hidden="true" focusable="false">
-          <use href="#i-star" />
-        </svg>
-        <span>rishabh sinha</span>
-      </a>
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 var(--fs-base)/1.55 var(--sans);
+  padding: 0 var(--gutter-r) 0 var(--gutter-l);
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); text-decoration: underline; text-underline-offset: 0.15em; }
+a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+ol, ul { list-style: none; margin: 0; padding: 0; }
+strong { font-weight: 600; }
 
-      <div class="header-actions">
-        <p class="availability">
-          <span class="availability-dot" aria-hidden="true"></span>
-          Google · Santa Clara
-        </p>
-        <button class="theme-toggle" type="button" aria-label="Switch to dark theme">
-          <svg class="theme-icon theme-icon-light" aria-hidden="true" focusable="false">
-            <use href="#i-contrast" />
-          </svg>
-          <svg class="theme-icon theme-icon-dark" aria-hidden="true" focusable="false">
-            <use href="#i-sun" />
-          </svg>
-        </button>
+.page { max-width: 50rem; margin: 0 auto; padding: 3.5rem 0 3rem; }
+
+/* bio block */
+.bio h1 { font: 600 var(--fs-xl)/1.15 var(--serif); letter-spacing: -0.01em; }
+.bio p { margin-top: 0.9rem; max-width: 65ch; font-size: var(--fs-md); line-height: 1.6; }
+.slash { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.25rem 0; font-size: var(--fs-md); }
+.slash li:not(:last-child)::after { content: "/"; color: var(--meta); margin: 0 0.55em; }
+.toc { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.2rem 0; font-size: var(--fs-sm); color: var(--meta); }
+.toc li:not(:last-child)::after { content: "\00b7"; margin: 0 0.6em; }
+
+/* sections */
+section { margin-top: 3rem; scroll-margin-top: 1rem; }
+.sec-h { font: 600 var(--fs-lg)/1.25 var(--serif); }
+.sec-note { margin-top: 0.3rem; color: var(--meta); max-width: 65ch; }
+.list { margin-top: 1rem; }
+
+/* one entry grammar for every section: left column (year/dates + small type tag), body */
+.e {
+  display: grid;
+  grid-template-columns: var(--left) minmax(0, 1fr);
+  column-gap: var(--gap);
+  padding: 0.8rem 1rem 0.85rem;
+}
+.e + .e { margin-top: 0.15rem; }
+.e.hl { background: var(--hl); border-radius: 3px; padding-top: 1rem; padding-bottom: 1.05rem; }
+.m { display: flex; flex-direction: column; gap: 0.05rem; padding-top: 0.15rem; font-size: var(--fs-sm); color: var(--meta); font-variant-numeric: tabular-nums; }
+.tag { font-weight: 600; font-variant-caps: all-small-caps; letter-spacing: 0.04em; font-size: 1.0625em; }
+.b { min-width: 0; overflow-wrap: anywhere; max-width: 65ch; }
+.b h3 { font: 600 var(--fs-md)/1.35 var(--serif); text-wrap: pretty; }
+.b h3 .d { font: 400 var(--fs-base)/1.4 var(--sans); color: var(--meta); }
+.b .ln { margin-top: 0.15rem; }
+.b .mt { margin-top: 0.15rem; color: var(--meta); }
+.b .mt em { color: var(--ink); }
+.b .lk { margin-top: 0.15rem; font-size: var(--fs-sm); }
+.b .lk a + a::before { content: "/"; color: var(--meta); margin: 0 0.5em; display: inline-block; }
+.tldr { margin-top: 0.45rem; }
+.tldr b { font-weight: 600; margin-right: 0.35em; }
+
+/* compact entries: credits, education */
+.e.thin { padding-top: 0.45rem; padding-bottom: 0.45rem; }
+.e.thin .m { padding-top: 0.1rem; }
+
+/* key PRs: number, one-liner, merge month */
+.prs { margin-top: 0.5rem; font-size: var(--fs-sm); line-height: 1.5; }
+.prs li {
+  display: grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr) auto;
+  grid-template-areas: "n t mo";
+  column-gap: 0.75rem;
+  padding: 0.2rem 0;
+  border-top: 1px solid var(--rule);
+}
+.prs li:last-child { border-bottom: 1px solid var(--rule); }
+.prs .n { grid-area: n; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prs .t { grid-area: t; min-width: 0; }
+.prs .mo { grid-area: mo; color: var(--meta); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.prs .t .r { color: var(--meta); }
+
+/* work bullets */
+.bul { margin-top: 0.35rem; }
+.bul li { position: relative; padding-left: 0.95rem; }
+.bul li + li { margin-top: 0.1rem; }
+.bul li::before { content: "\2013"; position: absolute; left: 0; color: var(--meta); }
+
+/* writing */
+.e .b > a.ti { font-weight: 600; }
+.e .b .f { display: block; color: var(--meta); }
+
+footer { margin-top: 3rem; padding: 1rem 1rem 0; border-top: 1px solid var(--rule); color: var(--meta); font-size: var(--fs-sm); }
+
+@media (max-width: 34rem) {
+  .page { padding-top: 2.25rem; }
+  .bio h1 { font-size: 1.875rem; }
+  .e { grid-template-columns: minmax(0, 1fr); padding: 0.75rem 0.75rem 0.8rem; }
+  .e.hl { padding-top: 0.85rem; padding-bottom: 0.9rem; }
+  .m { flex-direction: row; flex-wrap: wrap; gap: 0 0.6rem; padding: 0 0 0.2rem; }
+  .prs li {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: "n mo" "t t";
+    column-gap: 0.6rem;
+    padding: 0.3rem 0;
+  }
+  .prs .mo { justify-self: start; }
+  footer { padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="bio">
+  <h1>Rishabh Sinha</h1>
+  <p>I&rsquo;m a software engineer at Google in Sunnyvale, working on Gemini serving. Before Google I was at AWS, building multi-agent orchestration on Bedrock AgentCore. I work on LLM inference and KV-cache systems and on evaluating AI agents. On <a href="https://github.com/ovg-project/kvcached">kvcached</a> I&rsquo;m a Collaborator with triage access and was named a core contributor in the <a href="https://github.com/ovg-project/kvcached/releases/tag/v0.1.6">v0.1.6 release notes</a>; IBM Research credits me in the <a href="https://arxiv.org/abs/2603.06588">vLLM Hook v1 technical report</a>. I&rsquo;ve also merged fixes in the <a href="https://github.com/vllm-project">vLLM project</a>, <a href="https://github.com/ai-dynamo/nixl">NVIDIA Dynamo NIXL</a>, <a href="https://github.com/kvcache-ai/Mooncake">Mooncake</a> and <a href="https://github.com/sgl-project/sglang">SGLang</a>.</p>
+  <ul class="slash" aria-label="Links">
+    <li><a href="mailto:rsinha17@terpmail.umd.edu">Email</a></li>
+    <li><a href="https://scholar.google.com/citations?user=xKEmxtwAAAAJ">Scholar</a></li>
+    <li><a href="https://github.com/rishabhsinha17">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/rishabhsinha17">LinkedIn</a></li>
+  </ul>
+  <nav aria-label="Contents">
+    <ul class="toc">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#open-source">Open source</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#writing">Writing</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<!-- Research: papers only, then credits -->
+<section id="research" aria-labelledby="research-h">
+  <h2 class="sec-h" id="research-h">Research</h2>
+  <ol class="list">
+    <li class="e hl">
+      <div class="m"><span>2026</span><span class="tag">paper</span></div>
+      <div class="b">
+        <h3><a href="https://arxiv.org/abs/2610.37679">Exposure Is Not Commitment: Double-Stratified Evaluation of Latent Monitors for Tool-Using Agents</a></h3>
+        <p class="ln"><strong>Rishabh Sinha</strong> (sole author)</p>
+        <p class="mt"><em>Agents in the Wild @ NeurIPS 2026</em>, accepted poster</p>
+        <p class="lk"><a href="https://arxiv.org/abs/2610.37679">arXiv 2610.37679</a><a href="https://github.com/rishabhsinha17/latent-state-auditing">code &amp; artifacts</a></p>
+        <p class="tldr"><b>TL;DR</b>Separates exposure to an injection from commitment to act on it, in both the evaluation and the training population. Probes trained on the naive contrast mostly learn exposure; retrained on exposed cases only, they predict the agent&rsquo;s own unsafe tool call up to two steps early, with commitment AUROC 0.85 to 0.91 across three models.</p>
       </div>
-    </header>
-
-    <div class="page-shell" id="top">
-      <section class="intro" aria-labelledby="intro-title">
-        <div class="intro-orbit" aria-hidden="true">
-          <span class="orbit-dot"></span>
-        </div>
-
-        <div class="intro-copy">
-          <p class="eyebrow">Software engineer · ML systems</p>
-          <h1 id="intro-title">I build AI<br />systems that <em>move.</em></h1>
-          <p class="lede">
-            I work on low-latency inference, retrieval, and reliable agentic systems —
-            currently at <a href="https://about.google/" rel="noreferrer">Google</a>.
-          </p>
-        </div>
-
-        <nav class="section-nav" aria-label="Page sections">
-          <a href="#experience"><span>01</span>Experience</a>
-          <a href="#open-source"><span>02</span>Open source</a>
-          <a href="#projects"><span>03</span>Projects</a>
-          <a href="#research"><span>04</span>Research</a>
-          <a href="#writing"><span>05</span>Writing</a>
-          <a href="#education"><span>06</span>Education</a>
-          <a href="#skills"><span>07</span>Skills</a>
-        </nav>
-
-        <a class="email-link" href="mailto:rsinha17@terpmail.umd.edu">
-          <span>Start a conversation</span>
-          <svg class="arrow" aria-hidden="true" focusable="false">
-            <use href="#i-arrow-ne" />
-          </svg>
-        </a>
-      </section>
-
-      <div class="page-body">
-        <main id="main-content" tabindex="-1">
-          <section class="content-section" id="experience" aria-labelledby="experience-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">01 / Work</p>
-                <h2 id="experience-title">Experience</h2>
-              </div>
-              <p>
-                Production ML and distributed systems work across model serving,
-                retrieval, agent orchestration, and scientific computing.
-              </p>
-            </header>
-
-            <ol class="experience-list" role="list">
-              <li>
-                <div class="experience-meta">
-                  <time datetime="2026-03">Mar 2026 — Present</time>
-                  <span>Sunnyvale, CA</span>
-                </div>
-                <div class="experience-role">
-                  <p>Google</p>
-                  <h3>Software Engineer</h3>
-                </div>
-                <ul role="list">
-                  <li>Delivered Gemini intent-encoder post-training at 100+ QPS and sub-25 ms p99 with QLoRA/SFT on four TPUs.</li>
-                  <li>Lowered RAG retrieval p99 by 9% through fan-out DAGs and concurrent embedding-memory reads.</li>
-                  <li>Improved LLM serving with prefix-cache reuse across disaggregated prefill and decode,
-                    reducing KV recomputation.</li>
-                  <li>Hardened serving reliability with safer Borg/Kubernetes rollouts, telemetry, and cell-level rollback.</li>
-                </ul>
-              </li>
-              <li>
-                <div class="experience-meta">
-                  <time datetime="2025-08">Aug 2025 — Mar 2026</time>
-                  <span>Seattle, WA</span>
-                </div>
-                <div class="experience-role">
-                  <p>Amazon Web Services</p>
-                  <h3>Software Development Engineer</h3>
-                </div>
-                <ul role="list">
-                  <li>Architected a Bedrock AgentCore and LangGraph multi-agent orchestrator, cutting inference latency 40% with semantic caching.</li>
-                  <li>Built a Kubernetes static-analysis engine around scheduler bin-packing, increasing validation throughput by more than 300%.</li>
-                  <li>Improved agentic code-generation success by 25%+ with memory, sandboxed execution, and eval-driven repair loops.</li>
-                  <li>Raised agent reliability by 30%+ through deterministic evals, trace replay, and guarded tool execution.</li>
-                </ul>
-              </li>
-              <li>
-                <div class="experience-meta">
-                  <time datetime="2024-05">May 2024 — Aug 2024</time>
-                  <span>Seattle, WA</span>
-                </div>
-                <div class="experience-role">
-                  <p>Amazon Web Services</p>
-                  <h3>Software Development Engineer Intern</h3>
-                </div>
-                <ul role="list">
-                  <li>Built a fault-tolerant OAuth-backed integration for synchronizing resource data across 150+ AWS services.</li>
-                  <li>Implemented SigV4 authentication and 5 ms LDAP authorization using configuration caching and Guice.</li>
-                </ul>
-              </li>
-              <li>
-                <div class="experience-meta">
-                  <time datetime="2023-05">May 2023 — Aug 2023</time>
-                  <span>Gaithersburg, MD</span>
-                </div>
-                <div class="experience-role">
-                  <p>National Institute of Standards and Technology</p>
-                  <h3>Software Engineering Intern</h3>
-                </div>
-                <ul role="list">
-                  <li>Accelerated signal processing by 85% with multiprocessing, NumPy SIMD operations, and parallel execution.</li>
-                  <li>Reduced runtime by 45 seconds through thread pooling, profiling, and C++ hot-path optimization.</li>
-                </ul>
-              </li>
-            </ol>
-          </section>
-
-          <section class="content-section" id="open-source" aria-labelledby="open-source-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">02 / Upstream</p>
-                <h2 id="open-source-title">Open source</h2>
-              </div>
-              <p>Merged contributions to the open LLM serving stack.</p>
-            </header>
-
-            <ol class="project-list" role="list">
-              <li>
-                <a href="https://github.com/ovg-project/kvcached/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
-                  <span class="project-number">01</span>
-                  <span class="project-copy">
-                    <strong>kvcached</strong>
-                    <span>Elastic KV-cache sharing across co-located LLMs through GPU virtual memory, integrated with vLLM and SGLang. Contributed fp8 per-token-head KV quantization, allocation rollback on mid-alloc failure, and the cross-layer KV-sharing binding fix. A lifecycle-readiness and failure-propagation workstream is in review with maintainer sign-off.</span>
-                  </span>
-                  <span class="project-tags">vLLM · SGLang · KV cache</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/search?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged+org%3Avllm-project&amp;type=pullrequests" rel="noreferrer">
-                  <span class="project-number">02</span>
-                  <span class="project-copy">
-                    <strong>vLLM ecosystem</strong>
-                    <span>Quantization, routing, and serving components across six repositories in the vLLM org: a per-column quantization-range hoist in compressed-tensors, calibration-failure diagnostics in llm-compressor, a response-format correctness fix in semantic-router, and a controller panic fix in aibrix.</span>
-                  </span>
-                  <span class="project-tags">Quantization · Routing · Serving</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/kvcache-ai/Mooncake/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
-                  <span class="project-number">03</span>
-                  <span class="project-copy">
-                    <strong>Mooncake</strong>
-                    <span>KV-cache transfer engine behind disaggregated serving. Migrated the master-service suite to a scenario DSL and fixed an RDMA endpoint leak surfaced by the nightly sanitizer run.</span>
-                  </span>
-                  <span class="project-tags">C++ · RDMA</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/tile-ai/tilelang/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
-                  <span class="project-number">04</span>
-                  <span class="project-copy">
-                    <strong>TileLang</strong>
-                    <span>DSL and compiler for high-performance GPU kernels. Contributed eager-frontend correctness fixes and replaced cloudpickle with JSON in the kernel-parameter cache.</span>
-                  </span>
-                  <span class="project-tags">Compiler · Kernels</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/llm-d/llm-d/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged" rel="noreferrer">
-                  <span class="project-number">05</span>
-                  <span class="project-copy">
-                    <strong>llm-d</strong>
-                    <span>Kubernetes-native distributed inference. Corrected the endpoint-picker configuration schema documentation.</span>
-                  </span>
-                  <span class="project-tags">Go · Kubernetes</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://arxiv.org/abs/2603.06588" rel="noreferrer">
-                  <span class="project-number">06</span>
-                  <span class="project-copy">
-                    <strong>vLLM Hook (IBM Research)</strong>
-                    <span>vLLM plug-in for reading and steering model internals at serving time. Contributed the tool-call risk analyzer, an activation probe that scores each agent step before the model acts, verified end to end on the plug-in&rsquo;s capture path. Credited as a community contributor in the v1 technical report.</span>
-                  </span>
-                  <span class="project-tags">vLLM · Probes · Agent safety</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-            </ol>
-          </section>
-
-          <section class="content-section" id="projects" aria-labelledby="projects-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">03 / Selected builds</p>
-                <h2 id="projects-title">Projects</h2>
-              </div>
-              <p>Measured systems work: throughput, tail latency, scaling, and reproducible evaluation.</p>
-            </header>
-
-            <ol class="project-list" role="list">
-              <li>
-                <a href="https://superred.simonsure.com/" rel="noreferrer">
-                  <span class="project-number">01</span>
-                  <span class="project-copy">
-                    <strong>SuperRed</strong>
-                    <span>Composable AI red-teaming across attackers, targets, benchmarks, and explicit threat models.</span>
-                  </span>
-                  <span class="project-tags">Python · AI Security</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/rishabhsinha17/low-latency-llm-inference-server" rel="noreferrer">
-                  <span class="project-number">02</span>
-                  <span class="project-copy">
-                    <strong>Low-Latency LLM Inference</strong>
-                    <span>120 tokens/s on Llama-3-8B with 40% lower p99 latency at 32-request concurrency.</span>
-                  </span>
-                  <span class="project-tags">vLLM · C# · gRPC</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/rishabhsinha17/rl-hyperparam-tuner" rel="noreferrer">
-                  <span class="project-number">03</span>
-                  <span class="project-copy">
-                    <strong>RL Hyperparameter Tuner</strong>
-                    <span>PPO-driven learning-rate tuning for ResNet-18, validated against a 910 img/s JAX ceiling.</span>
-                  </span>
-                  <span class="project-tags">PPO · PySpark · JAX</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/rishabhsinha17/slurm-vision-rag-platform" rel="noreferrer">
-                  <span class="project-number">04</span>
-                  <span class="project-copy">
-                    <strong>SLURM Vision RAG</strong>
-                    <span>LLaVA-1.5-7B fine-tuning on four A100s with a 1M-vector retrieval index.</span>
-                  </span>
-                  <span class="project-tags">PyTorch · Slurm · RAG</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-            </ol>
-          </section>
-
-          <section class="content-section" id="research" aria-labelledby="research-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">04 / Papers</p>
-                <h2 id="research-title">Research</h2>
-              </div>
-              <p>Current work on evaluating and understanding the behavior of AI systems.</p>
-            </header>
-
-            <ol class="research-list" role="list">
-              <li>
-                <div class="research-meta">
-                  <time datetime="2026">2026</time>
-                  <span class="status status-preprint">Preprint</span>
-                </div>
-                <h3>
-                  <a href="https://superred.simonsure.com/" rel="noreferrer">
-                    SuperRed: An AI Red-Teaming and System Security Framework
-                  </a>
-                </h3>
-                <p class="research-authors">
-                  Simon Sure · Sarthak Munshi · Rishabh Sinha · Zhun Wang · Dawn Song · ICLR 2027 submission
-                </p>
-                <p class="research-summary">
-                  A composable framework separating attackers, systems under test, security claims,
-                  and controllers. Security domains make adversary trust boundaries explicit,
-                  enforced, and sweepable across experiments.
-                </p>
-                <dl class="research-metrics" aria-label="Framework scale">
-                  <div><dt>35</dt><dd>modules at launch</dd></div>
-                  <div><dt>4</dt><dd>swappable components</dd></div>
-                </dl>
-                <div class="research-footer research-links">
-                  <a href="https://drive.google.com/file/d/1byrc2J4vblcpl2Ghjdi5chGPdFAEpE7Z/view" rel="noreferrer">
-                    Paper
-                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                  </a>
-                  <a href="https://superred.simonsure.com/" rel="noreferrer">
-                    Project
-                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                  </a>
-                  <a href="https://github.com/RoldSI/superred" rel="noreferrer">
-                    Source
-                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="research-meta">
-                  <time datetime="2026">2026</time>
-                  <span class="status status-preprint">Accepted</span>
-                </div>
-                <h3>
-                  <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
-                    Exposure Is Not Commitment: Double-Stratified Evaluation of Latent Monitors for Tool-Using Agents
-                  </a>
-                </h3>
-                <p class="research-authors">Rishabh Sinha · UC Berkeley · Agents in the Wild @ NeurIPS 2026</p>
-                <p class="research-summary">
-                  Separates injection exposure from behavioral commitment, in both the
-                  evaluation and the training population. Monitors trained on the naive
-                  contrast mostly learn exposure; retrained on exposed cases only, the same
-                  probes predict the agent&rsquo;s own unsafe tool call up to two steps early.
-                </p>
-                <dl class="research-metrics" aria-label="Latent monitor results">
-                  <div><dt>0.85 – 0.91</dt><dd>commitment AUROC, three models</dd></div>
-                  <div><dt>2 steps</dt><dd>lead time, trajectory maximum</dd></div>
-                </dl>
-                <div class="research-footer research-links">
-                  <a href="https://arxiv.org/abs/2610.37679" rel="noreferrer">
-                    Paper
-                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                  </a>
-                  <a href="https://github.com/rishabhsinha17/latent-state-auditing" rel="noreferrer">
-                    Code &amp; artifacts
-                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                  </a>
-                </div>
-              </li>
-              <li class="research-wide">
-                <div class="research-meta">
-                  <time datetime="2026">2026</time>
-                  <span class="status">Under review</span>
-                </div>
-                <h3>A Nonzero Final Learning Rate Floor Improves Transfer of Agent-Discovered Schedule Tweaks</h3>
-                <p class="research-authors">Rishabh Sinha · NeurIPS 2026 main conference</p>
-                <p class="research-summary">
-                  Tests whether an AutoResearch-discovered schedule change survives controlled
-                  decomposition, five-seed reruns, and nearby depth transfer. A 0.05 final
-                  learning-rate floor—not warmup—was the robust component in the fixed-budget
-                  single-GPU harness.
-                </p>
-                <dl class="research-metrics" aria-label="Learning-rate floor results">
-                  <div><dt>4 / 5</dt><dd>base seeds improved</dd></div>
-                  <div><dt>5 / 5</dt><dd>depth-10 seeds improved</dd></div>
-                  <div><dt>0.000877</dt><dd>base mean BPB gain</dd></div>
-                  <div><dt>0.001570</dt><dd>depth-10 mean BPB gain</dd></div>
-                </dl>
-                <div class="research-footer research-links">
-                  <a href="https://drive.google.com/file/d/1zxLHzaeER3M-akRGKCYDJdwB_mN0WR3x/view" rel="noreferrer">
-                    Paper
-                    <svg class="arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-ne" /></svg>
-                  </a>
-                </div>
-              </li>
-            </ol>
-          </section>
-
-          <section class="content-section" id="writing" aria-labelledby="writing-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">05 / Notes</p>
-                <h2 id="writing-title">Writing</h2>
-              </div>
-              <p>Mini projects from the exploration phase of Neel Nanda&rsquo;s MATS 12 stream, October 2026.</p>
-            </header>
-
-            <ol class="project-list" role="list">
-              <li>
-                <a href="/writing/codenames-cot-token-ban/">
-                  <span class="project-number">01</span>
-                  <span class="project-copy">
-                    <strong>Banning board words from a Codenames spymaster&rsquo;s reasoning</strong>
-                    <span>gpt-oss-120b respelled the banned words instead of dropping them, and the ban cost about two thirds of the gain from reasoning.</span>
-                  </span>
-                  <span class="project-tags">CoT · Monitoring</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/writing/inkling-reply-opener/">
-                  <span class="project-number">02</span>
-                  <span class="project-copy">
-                    <strong>Inkling&rsquo;s reply opener</strong>
-                    <span>Forcing &ldquo;I can assure you&rdquo; after traces that plan to admit being an AI raised clean human claims from 9 to 132 of 300 replies.</span>
-                  </span>
-                  <span class="project-tags">Model forensics</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/writing/thought-branches-matched-control/">
-                  <span class="project-number">03</span>
-                  <span class="project-copy">
-                    <strong>Thought Branches with a matched control</strong>
-                    <span>Hint transplant curves jump at single sentences, and the late hint effect may come from how the released traces were selected.</span>
-                  </span>
-                  <span class="project-tags">CoT faithfulness</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/writing/eval-awareness-honeypot/">
-                  <span class="project-number">04</span>
-                  <span class="project-copy">
-                    <strong>Gaming an evaluation without saying so</strong>
-                    <span>No route produced runs to test silent gaming, but blocking talk of a detector undid much of a disguised copy.</span>
-                  </span>
-                  <span class="project-tags">Eval awareness</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/writing/self-recognition-label-effect/">
-                  <span class="project-number">05</span>
-                  <span class="project-copy">
-                    <strong>Do AI judges recognise their own work?</strong>
-                    <span>A &ldquo;your own&rdquo; label raised ratings of identical transcripts, while the true author made no detectable difference.</span>
-                  </span>
-                  <span class="project-tags">Monitoring</span>
-                  <svg class="arrow" aria-hidden="true" focusable="false">
-                    <use href="#i-arrow-ne" />
-                  </svg>
-                </a>
-              </li>
-            </ol>
-          </section>
-
-          <section class="content-section" id="education" aria-labelledby="education-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">06 / Education</p>
-                <h2 id="education-title">Education</h2>
-              </div>
-              <p>Computer science, mathematics, data systems, and computational finance.</p>
-            </header>
-
-            <div class="education-grid">
-              <article>
-                <p class="education-year">2026</p>
-                <h3>University of California, Berkeley</h3>
-                <p>Master of Information and Data Science</p>
-                <div>
-                  <span>Part-time professional program</span>
-                  <span>GPA 4.0</span>
-                </div>
-              </article>
-              <article>
-                <p class="education-year">2025</p>
-                <h3>University of Maryland, College Park</h3>
-                <p>Bachelor’s in Computer Science and Mathematics</p>
-                <div>
-                  <span>Minor in Computational Finance</span>
-                  <span>GPA 3.98</span>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <section class="content-section" id="skills" aria-labelledby="skills-title">
-            <header class="section-heading">
-              <div>
-                <p class="section-number">07 / Toolkit</p>
-                <h2 id="skills-title">Skills</h2>
-              </div>
-              <p>What the work above is built with.</p>
-            </header>
-
-            <dl class="skills-list">
-              <div>
-                <dt>Languages</dt>
-                <dd>Python, Go, C++, C, SQL</dd>
-              </div>
-              <div>
-                <dt>Inference &amp; serving</dt>
-                <dd>vLLM, SGLang, KV-cache systems, prefix caching, disaggregated serving, FP8 and GPTQ quantization</dd>
-              </div>
-              <div>
-                <dt>ML &amp; compute</dt>
-                <dd>PyTorch, JAX, CUDA, Triton, TPUs</dd>
-              </div>
-              <div>
-                <dt>Systems</dt>
-                <dd>Kubernetes, Linux, RDMA, gRPC, Ray, Slurm, Docker, OpenTelemetry</dd>
-              </div>
-            </dl>
-          </section>
-        </main>
-
-        <footer class="site-footer">
-          <div>
-            <p class="footer-kicker">AI systems · infrastructure · research</p>
-            <h2>Let’s build something fast.</h2>
-          </div>
-          <a class="footer-email" href="mailto:rsinha17@terpmail.umd.edu">
-            <span>rsinha17@terpmail.umd.edu</span>
-            <svg class="arrow" aria-hidden="true" focusable="false">
-              <use href="#i-arrow-ne" />
-            </svg>
-          </a>
-          <div class="footer-bottom">
-            <p>© <span id="current-year">2026</span> Rishabh Sinha · Santa Clara, CA</p>
-            <nav aria-label="Profile links">
-              <a href="https://github.com/rishabhsinha17" rel="me noreferrer">GitHub</a>
-              <a href="https://www.linkedin.com/in/rishabhsinha17" rel="me noreferrer">LinkedIn</a>
-              <a href="https://scholar.google.com/citations?user=xKEmxtwAAAAJ" rel="me noreferrer">Google Scholar</a>
-              <a href="mailto:rsinha17@terpmail.umd.edu">Email</a>
-            </nav>
-            <a class="back-to-top" href="#top">
-              Back to top
-              <svg class="arrow arrow-up" aria-hidden="true" focusable="false">
-                <use href="#i-arrow-up" />
-              </svg>
-            </a>
-          </div>
-        </footer>
+    </li>
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">preprint</span></div>
+      <div class="b">
+        <h3><a href="https://drive.google.com/file/d/1byrc2J4vblcpl2Ghjdi5chGPdFAEpE7Z/view">SuperRed: An AI Red-Teaming and System Security Framework</a></h3>
+        <p class="ln">Simon Sure, Sarthak Munshi, <strong>Rishabh Sinha</strong>, Zhun Wang, Dawn Song</p>
+        <p class="mt"><em>ICLR 2027 submission</em>, preprint</p>
+        <p class="lk"><a href="https://drive.google.com/file/d/1byrc2J4vblcpl2Ghjdi5chGPdFAEpE7Z/view">paper</a><a href="https://superred.simonsure.com/">project</a><a href="https://github.com/RoldSI/superred">source</a></p>
+        <p class="tldr"><b>TL;DR</b>A composable framework that separates attackers, systems under test, security claims and controllers, so adversary trust boundaries are explicit, enforced and sweepable across experiments; 35 modules at launch.</p>
       </div>
-    </div>
-  </body>
+    </li>
+    <li class="e thin">
+      <div class="m"><span>2026</span><span class="tag">credit</span></div>
+      <div class="b">
+        <p><strong>Credits</strong> &middot; <a href="https://arxiv.org/abs/2603.06588">vLLM Hook v1 technical report</a> (IBM Research, arXiv 2603.06588), credited as a community contributor for the tool-call risk analyzer (<a href="https://github.com/IBM/vLLM-Hook/pull/41">vLLM-Hook #41</a>).</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- Open source: one entry per project; left column = year + status tag -->
+<section id="open-source" aria-labelledby="oss-h">
+  <h2 class="sec-h" id="oss-h">Open source</h2>
+  <p class="sec-note">One entry per project: my status there, then the pull requests that matter. Each project name links to my merged pull requests in it.</p>
+  <ol class="list">
+    <li class="e hl">
+      <div class="m"><span>2026</span><span class="tag">collaborator</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/ovg-project/kvcached/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">kvcached</a> <span class="d">elastic KV-cache sharing across co-located LLMs through GPU virtual memory, for vLLM and SGLang</span></h3>
+        <p class="ln"><strong>Collaborator (triage) and core contributor.</strong> Triage access on the repo; one of the two core contributors named in the <a href="https://github.com/ovg-project/kvcached/releases/tag/v0.1.6">v0.1.6 release notes</a> (Oct 2026); I review other contributors&rsquo; pull requests.</p>
+        <p class="lk"><a href="https://github.com/ovg-project/kvcached/releases/tag/v0.1.6">v0.1.6 release notes</a><a href="https://github.com/ovg-project/kvcached">repo</a></p>
+        <ul class="prs" aria-label="Key kvcached pull requests">
+          <li><a class="n" href="https://github.com/ovg-project/kvcached/pull/478">#478</a><span class="t">Lifecycle readiness and failure propagation for KVCacheManager: allocator start-up failures surface as explicit states (initializing, ready, degraded, failed) instead of dying silently in a background thread.</span><time class="mo" datetime="2026-10">Oct 2026</time></li>
+          <li><a class="n" href="https://github.com/ovg-project/kvcached/pull/578">#578</a><span class="t">SGLang under tensor parallelism: every rank admits and evicts from one agreed KV budget, so per-rank pools stop disagreeing about free capacity.</span><time class="mo" datetime="2026-10">Oct 2026</time></li>
+          <li><a class="n" href="https://github.com/ovg-project/kvcached/pull/554">#554</a><span class="t">SGLang hybrid models (attention + Mamba pools): prefill batches the pools cannot back are retried instead of crashing the server.</span><time class="mo" datetime="2026-10">Oct 2026</time></li>
+          <li><a class="n" href="https://github.com/ovg-project/kvcached/pull/433">#433</a><span class="t">fp8 per-token-head KV quantization under kvcached, with output identical to vLLM without kvcached.</span><time class="mo" datetime="2026-08">Aug 2026</time></li>
+          <li><a class="n" href="https://github.com/ovg-project/kvcached/pull/430">#430</a><span class="t">Roll back partial allocations when a page allocation fails midway, instead of leaking blocks.</span><time class="mo" datetime="2026-08">Aug 2026</time></li>
+          <li><a class="n" href="https://github.com/ovg-project/kvcached/pull/482">#482</a><span class="t">Release the shared-memory segment when vLLM&rsquo;s engine shuts down on SIGTERM.</span><time class="mo" datetime="2026-09">Sep 2026</time></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/ai-dynamo/nixl/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">NVIDIA Dynamo NIXL</a> <span class="d">transfer library for disaggregated inference</span></h3>
+        <ul class="prs" aria-label="Key NIXL pull requests">
+          <li><a class="n" href="https://github.com/ai-dynamo/nixl/pull/2252">#2252</a><span class="t">The POSIX backend refuses to release a transfer that still has I/O in flight, fixing a use-after-free in the completion callback.</span><time class="mo" datetime="2026-11">Nov 2026</time></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/kvcache-ai/Mooncake/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">Mooncake</a> <span class="d">KV-cache transfer engine for disaggregated serving</span></h3>
+        <ul class="prs" aria-label="Key Mooncake pull requests">
+          <li><a class="n" href="https://github.com/kvcache-ai/Mooncake/pull/3846">#3846</a><span class="t">Fixed an RDMA endpoint memory leak in the transfer engine that the nightly LeakSanitizer run caught.</span><time class="mo" datetime="2026-09">Sep 2026</time></li>
+          <li><span class="n">series</span><span class="t">A series moving the master-service test monolith onto a typed scenario DSL: <a href="https://github.com/kvcache-ai/Mooncake/pull/3656">#3656</a>, <a href="https://github.com/kvcache-ai/Mooncake/pull/3702">#3702</a>, <a href="https://github.com/kvcache-ai/Mooncake/pull/3847">#3847</a>, <a href="https://github.com/kvcache-ai/Mooncake/pull/3927">#3927</a>.</span><time class="mo" datetime="2026-08">Aug&ndash;Sep 2026</time></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/IBM/vLLM-Hook/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">IBM vLLM Hook</a> <span class="d">vLLM plug-in for reading and steering model internals at serving time</span></h3>
+        <p class="ln">Credited as a community contributor in the <a href="https://arxiv.org/abs/2603.06588">vLLM Hook v1 technical report</a> (IBM Research).</p>
+        <ul class="prs" aria-label="Key vLLM Hook pull requests">
+          <li><a class="n" href="https://github.com/IBM/vLLM-Hook/pull/41">#41</a><span class="t">Tool-call risk analyzer, an activation probe that scores each agent step before the model acts.</span><time class="mo" datetime="2026-10">Oct 2026</time></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/fzyzcjy/torch_memory_saver/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">torch_memory_saver</a> <span class="d">CUDA memory pause and resume used by SGLang</span></h3>
+        <ul class="prs" aria-label="Key torch_memory_saver pull requests">
+          <li><a class="n" href="https://github.com/fzyzcjy/torch_memory_saver/pull/108">#108</a><span class="t">Fixed at the root a startup crash reported in SGLang (<a href="https://github.com/sgl-project/sglang/issues/36533">sglang#36533</a>) by giving the CUDA hooks an $ORIGIN-relative RPATH.</span><time class="mo" datetime="2026-09">Sep 2026</time></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/search?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged+org%3Avllm-project&amp;type=pullrequests">vLLM project</a> <span class="d">quantization, routing and serving components around vLLM</span></h3>
+        <ul class="prs" aria-label="Key vLLM project pull requests">
+          <li><a class="n" href="https://github.com/vllm-project/aibrix/pull/2617">#2617</a><span class="t"><span class="r">aibrix:</span> the StormService controller and PodAutoscaler read the declared spec.mode, with webhook validation of conflicting settings.</span><time class="mo" datetime="2026-09">Sep 2026</time></li>
+          <li><a class="n" href="https://github.com/vllm-project/llm-compressor/pull/3097">#3097</a><span class="t"><span class="r">llm-compressor:</span> hoisted loop invariants out of GPTQ&rsquo;s per-column quantization loop.</span><time class="mo" datetime="2026-09">Sep 2026</time></li>
+        </ul>
+        <p class="mt">Also merged code in <a href="https://github.com/vllm-project/compressed-tensors/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">compressed-tensors</a>, <a href="https://github.com/vllm-project/semantic-router/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">semantic-router</a>, <a href="https://github.com/vllm-project/guidellm/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">guidellm</a>, <a href="https://github.com/vllm-project/production-stack/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">production-stack</a> and <a href="https://github.com/vllm-project/vllm-metal/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">vllm-metal</a>.</p>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/sgl-project/sglang/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">SGLang</a> <span class="d">LLM serving framework</span></h3>
+        <p class="ln">Wire tests for the prefill/decode is_dummy truth table on the Mooncake and NIXL transfer backends.</p>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/tile-ai/tilelang/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">TileLang</a> <span class="d">kernel language and compiler</span></h3>
+        <p class="ln">Eager-frontend correctness fixes, and cached kernel parameters stored as JSON instead of cloudpickle.</p>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/llm-d/llm-d/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">llm-d</a> <span class="d">Kubernetes-native distributed inference</span></h3>
+        <p class="ln">Endpoint-picker configuration schema docs.</p>
+      </div>
+    </li>
+
+    <li class="e">
+      <div class="m"><span>2026</span><span class="tag">contributor</span></div>
+      <div class="b">
+        <h3><a href="https://github.com/kubernetes-sigs/inference-perf/pulls?q=is%3Apr+author%3Arishabhsinha17+is%3Amerged">kubernetes-sigs/inference-perf</a> <span class="d">inference benchmarking</span></h3>
+        <p class="ln">Docs fix pointing the comparability seed row at load.base_seed.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- Work: dates + type tag on the left, role and place, bullets -->
+<section id="work" aria-labelledby="work-h">
+  <h2 class="sec-h" id="work-h">Work</h2>
+  <ol class="list">
+    <li class="e">
+      <div class="m"><span>Mar 2026&ndash;now</span><span class="tag">full-time</span></div>
+      <div class="b">
+        <h3>Google <span class="d">Software Engineer, Sunnyvale, CA</span></h3>
+        <ul class="bul">
+          <li>Delivered Gemini intent-encoder post-training at 100+ QPS and sub-25 ms p99 with QLoRA/SFT on four TPUs.</li>
+          <li>Lowered RAG retrieval p99 by 9% through fan-out DAGs and concurrent embedding-memory reads.</li>
+          <li>Improved LLM serving with prefix-cache reuse across disaggregated prefill and decode, reducing KV recomputation.</li>
+          <li>Hardened serving reliability with safer Borg/Kubernetes rollouts, telemetry, and cell-level rollback.</li>
+        </ul>
+      </div>
+    </li>
+    <li class="e">
+      <div class="m"><span>Aug 2025&ndash;<wbr>Mar 2026</span><span class="tag">full-time</span></div>
+      <div class="b">
+        <h3>Amazon Web Services <span class="d">Software Development Engineer, Seattle, WA</span></h3>
+        <ul class="bul">
+          <li>Architected a Bedrock AgentCore and LangGraph multi-agent orchestrator, cutting inference latency 40% with semantic caching.</li>
+          <li>Built a Kubernetes static-analysis engine around scheduler bin-packing, increasing validation throughput by more than 300%.</li>
+          <li>Improved agentic code-generation success by 25%+ with memory, sandboxed execution, and eval-driven repair loops.</li>
+          <li>Raised agent reliability by 30%+ through deterministic evals, trace replay, and guarded tool execution.</li>
+        </ul>
+      </div>
+    </li>
+    <li class="e">
+      <div class="m"><span>May&ndash;Aug 2024</span><span class="tag">intern</span></div>
+      <div class="b">
+        <h3>Amazon Web Services <span class="d">SDE Intern, Seattle, WA</span></h3>
+        <ul class="bul">
+          <li>Fault-tolerant OAuth-backed integration synchronizing resource data across 150+ AWS services.</li>
+          <li>SigV4 authentication and 5 ms LDAP authorization using configuration caching and Guice.</li>
+        </ul>
+      </div>
+    </li>
+    <li class="e">
+      <div class="m"><span>May&ndash;Aug 2023</span><span class="tag">intern</span></div>
+      <div class="b">
+        <h3>NIST <span class="d">Software Engineering Intern, Gaithersburg, MD</span></h3>
+        <ul class="bul">
+          <li>Accelerated signal processing by 85% with multiprocessing, NumPy SIMD and parallel execution.</li>
+          <li>Reduced runtime by 45 seconds through thread pooling, profiling, and C++ hot-path optimization.</li>
+        </ul>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- Writing: date-left, one-line findings -->
+<section id="writing" aria-labelledby="writing-h">
+  <h2 class="sec-h" id="writing-h">Writing</h2>
+  <p class="sec-note">Mini-projects from the exploration phase of Neel Nanda&rsquo;s MATS 12 stream.</p>
+  <ol class="list">
+    <li class="e thin"><div class="m"><time datetime="2026-10-11">Oct 2026</time><span class="tag">note</span></div><p class="b"><a class="ti" href="/writing/codenames-cot-token-ban/">Banning board words from a Codenames spymaster&rsquo;s reasoning</a><span class="f">gpt-oss-120b respelled the banned words instead of dropping them; the ban cost about two thirds of the gain from reasoning.</span></p></li>
+    <li class="e thin"><div class="m"><time datetime="2026-10-11">Oct 2026</time><span class="tag">note</span></div><p class="b"><a class="ti" href="/writing/inkling-reply-opener/">Inkling&rsquo;s reply opener</a><span class="f">Forcing &ldquo;I can assure you&rdquo; after traces that plan to admit being an AI raised clean human claims from 9 to 132 of 300 replies.</span></p></li>
+    <li class="e thin"><div class="m"><time datetime="2026-10-11">Oct 2026</time><span class="tag">note</span></div><p class="b"><a class="ti" href="/writing/thought-branches-matched-control/">Thought Branches with a matched control</a><span class="f">Hint transplant curves jump at single sentences; the late hint effect may come from how the released traces were selected.</span></p></li>
+    <li class="e thin"><div class="m"><time datetime="2026-10-11">Oct 2026</time><span class="tag">note</span></div><p class="b"><a class="ti" href="/writing/eval-awareness-honeypot/">Gaming an evaluation without saying so</a><span class="f">No route produced runs to test silent gaming, but blocking talk of a detector undid much of a disguised copy.</span></p></li>
+    <li class="e thin"><div class="m"><time datetime="2026-10-11">Oct 2026</time><span class="tag">note</span></div><p class="b"><a class="ti" href="/writing/self-recognition-label-effect/">Do AI judges recognise their own work?</a><span class="f">A &ldquo;your own&rdquo; label raised ratings of identical transcripts; the true author made no detectable difference.</span></p></li>
+  </ol>
+</section>
+
+<!-- Education: two lines -->
+<section id="education" aria-labelledby="edu-h">
+  <h2 class="sec-h" id="edu-h">Education</h2>
+  <ol class="list">
+    <li class="e thin"><div class="m"><span>2026</span><span class="tag">master&rsquo;s</span></div><p class="b"><strong>UC Berkeley</strong>, Master of Information and Data Science (part-time)</p></li>
+    <li class="e thin"><div class="m"><span>2025</span><span class="tag">bachelor&rsquo;s</span></div><p class="b"><strong>University of Maryland, College Park</strong>, BS Computer Science and Mathematics, minor in Computational Finance</p></li>
+  </ol>
+</section>
+</main>
+
+<footer>
+  <p>Santa Clara, CA &middot; <a href="mailto:rsinha17@terpmail.umd.edu">rsinha17@terpmail.umd.edu</a> &middot; Status and merge months from GitHub, updated <time datetime="2026-11">Nov 2026</time></p>
+</footer>
+</div>
+</body>
 </html>
